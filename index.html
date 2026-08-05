@@ -6,19 +6,22 @@
     <title>MIM Wonoanti EduQuiz</title>
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
             --secondary: #06b6d4;
             --success: #10b981;
             --danger: #ef4444;
             --bg: #f1f5f9;
-            --card-bg: #ffffff;
-            --text: #334155;
+            --card-bg: rgba(255, 255, 255, 0.93);
+            --text: #1e293b;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
+            /* Memasang latar belakang gambar */
+            background: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.45)), 
+                        url('background.png') no-repeat center center fixed;
+            background-size: cover;
             color: var(--text);
             margin: 0;
             padding: 0;
@@ -32,22 +35,25 @@
             width: 100%;
             max-width: 650px;
             background: var(--card-bg);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            padding: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            padding: 28px;
             margin: 16px;
             box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         h1, h2 {
             text-align: center;
             color: var(--primary);
             margin-top: 0;
+            font-weight: 700;
         }
 
         p {
             text-align: center;
-            color: #64748b;
+            color: #475569;
         }
 
         .form-group {
@@ -64,11 +70,12 @@
         .form-group input, .form-group select {
             width: 100%;
             padding: 12px;
-            border: 2px solid #e2e8f0;
+            border: 2px solid #cbd5e1;
             border-radius: 10px;
             font-size: 15px;
             box-sizing: border-box;
             outline: none;
+            background: #ffffff;
             transition: border-color 0.2s;
         }
 
@@ -93,7 +100,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+            box-shadow: 0 4px 6px rgba(2, 132, 199, 0.25);
         }
 
         button:hover {
@@ -102,14 +109,14 @@
         }
 
         .btn-mapel {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, #0284c7, #06b6d4);
             text-align: center;
             padding: 16px;
             font-size: 16px;
         }
 
         .btn-opsi {
-            background-color: #f8fafc;
+            background-color: #ffffff;
             color: var(--text);
             border: 2px solid #e2e8f0;
             width: 100%;
@@ -119,7 +126,7 @@
         }
 
         .btn-opsi:hover {
-            background-color: #e0e7ff;
+            background-color: #e0f2fe;
             border-color: var(--primary);
             color: var(--primary);
             transform: none;
@@ -140,7 +147,7 @@
             border-radius: 8px;
             box-shadow: none;
             flex: 1;
-            min-width: 120px;
+            min-width: 110px;
             text-align: center;
         }
 
@@ -214,10 +221,10 @@
 <body>
 
 <div class="container">
-    <!-- MENU 1: FORM PENDAFTARAN SISWA -->
+    <!-- MENU 1: PENDAFTARAN DATA SISWA -->
     <div id="step-daftar">
-        <h1>MIM Wonoanti EduQuiz</h1>
-        <p>Lengkapi data diri sebelum memulai latihan:</p>
+        <h1>Welcome to EduQuiz<br>MIM Wonoanti III</h1>
+        <p>Isi data diri sebelum mulai pengerjaan kuis:</p>
         <form id="form-daftar" onsubmit="simpanPendaftaran(event)">
             <div class="form-group">
                 <label for="nama">Nama Lengkap Siswa</label>
@@ -225,86 +232,83 @@
             </div>
             <div class="form-group">
                 <label for="sekolah">Asal Sekolah</label>
-                <input type="text" id="sekolah" value="MIM Wonoanti" placeholder="Nama Sekolah" required>
+                <input type="text" id="sekolah" value="MIM Wonoanti III" placeholder="Nama Sekolah" required>
             </div>
             <div class="form-group">
                 <label for="kelas-daftar">Pilihan Kelas</label>
                 <select id="kelas-daftar" required>
                     <option value="">-- Pilih Kelas --</option>
-                    <option value="Kelas 1">Kelas 1 SD</option>
-                    <option value="Kelas 2">Kelas 2 SD</option>
-                    <option value="Kelas 3">Kelas 3 SD</option>
-                    <option value="Kelas 4">Kelas 4 SD</option>
-                    <option value="Kelas 5">Kelas 5 SD</option>
-                    <option value="Kelas 6">Kelas 6 SD</option>
+                    <option value="Kelas 1">Kelas 1 SD/MI</option>
+                    <option value="Kelas 2">Kelas 2 SD/MI</option>
+                    <option value="Kelas 3">Kelas 3 SD/MI</option>
+                    <option value="Kelas 4">Kelas 4 SD/MI</option>
+                    <option value="Kelas 5">Kelas 5 SD/MI</option>
+                    <option value="Kelas 6">Kelas 6 SD/MI</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="email">Email Siswa / Wali</label>
+                <label for="email">Email Siswa / Orang Tua</label>
                 <input type="email" id="email" placeholder="contoh@gmail.com" required>
             </div>
-            <button type="submit" style="width: 100%; margin-top: 10px;">Mulai Belajar 🚀</button>
+            <button type="submit" style="width: 100%; margin-top: 10px;">Lanjut ke Pilihan Kelas 🚀</button>
         </form>
     </div>
 
     <!-- MENU 2: PILIH KELAS -->
     <div id="step-kelas" class="hidden">
-        <h1>MIM Wonoanti EduQuiz</h1>
-        <p>Pilih tingkat kelas anak:</p>
-        <div class="grid-menu" style="grid-template-columns: 1fr 1fr;">
-            <button onclick="pilihKelas('Kelas 1')" class="btn-mapel">🌟 Kelas 1 SD</button>
-            <button onclick="pilihKelas('Kelas 2')" class="btn-mapel">🚀 Kelas 2 SD</button>
-            <button onclick="pilihKelas('Kelas 3')" class="btn-mapel">🏆 Kelas 3 SD</button>
-            <button onclick="pilihKelas('Kelas 4')" class="btn-mapel">🎯 Kelas 4 SD</button>
-            <button onclick="pilihKelas('Kelas 5')" class="btn-mapel">🔥 Kelas 5 SD</button>
-            <button onclick="pilihKelas('Kelas 6')" class="btn-mapel">🎓 Kelas 6 SD</button>
+        <h1>EduQuiz MIM W III</h1>
+        <p>Pilih tingkat kelas kuis:</p>
+        <div class="grid-menu">
+            <button onclick="pilihKelas('Kelas 1')" class="btn-mapel">🌟 Kelas 1</button>
+            <button onclick="pilihKelas('Kelas 2')" class="btn-mapel">🚀 Kelas 2</button>
+            <button onclick="pilihKelas('Kelas 3')" class="btn-mapel">🏆 Kelas 3</button>
+            <button onclick="pilihKelas('Kelas 4')" class="btn-mapel">🎯 Kelas 4</button>
+            <button onclick="pilihKelas('Kelas 5')" class="btn-mapel">🔥 Kelas 5</button>
+            <button onclick="pilihKelas('Kelas 6')" class="btn-mapel">🎓 Kelas 6</button>
         </div>
     </div>
 
     <!-- MENU 3: PILIH MATA PELAJARAN -->
     <div id="step-mapel" class="hidden">
         <h2 id="teks-kelas">Pilih Mata Pelajaran</h2>
-        <p>Silakan pilih bidang pelajaran yang ingin diuji:</p>
+        <p>Pilih pelajaran yang ingin dikerjakan:</p>
         <div class="grid-menu" id="container-mapel"></div>
-        <button onclick="kembaliKeKelas()" style="margin-top: 20px; background-color: #64748b; width: 100%;">← Kembali Pilih Kelas</button>
+        <button onclick="kembaliKeKelas()" style="margin-top: 20px; background-color: #64748b; width: 100%;">← Kembali ke Menu Kelas</button>
     </div>
 
-    <!-- MENU 4: HALAMAN KUIS -->
+    <!-- MENU 4: HALAMAN PENGERJAAN KUIS -->
     <div id="step-kuis" class="hidden">
-        <!-- NAVIGASI TAMBAHAN SAAT MENGERJAKAN -->
         <div class="nav-quiz-container">
             <button onclick="soalSebelumnya()" class="btn-nav-quiz">← Soal Lalu</button>
-            <button onclick="kembaliKeMapelLangsung()" class="btn-nav-quiz">📚 Pilih Mapel</button>
-            <button onclick="kembaliKeKelasLangsung()" class="btn-nav-quiz">🏫 Pilih Kelas</button>
+            <button onclick="kembaliKeMapelLangsung()" class="btn-nav-quiz">📚 Menu Pelajaran</button>
+            <button onclick="kembaliKeKelasLangsung()" class="btn-nav-quiz">🏫 Menu Kelas</button>
         </div>
 
         <div class="quiz-header">
             <span id="label-mapel-kelas">Matematika - Kelas 1</span>
             <span id="label-nomor">Soal 1 dari 5</span>
         </div>
-        <div class="question-box" id="soal-teks">Pertanyaan akan muncul di sini...</div>
+        <div class="question-box" id="soal-teks">Teks pertanyaan kuis...</div>
         <div id="opsi-container"></div>
     </div>
 
-    <!-- MENU 5: HALAMAN HASIL -->
+    <!-- MENU 5: LAPORAN HASIL KUIS -->
     <div id="step-hasil" class="hidden result-card">
-        <h2>Kuis Selesai! 🎉</h2>
-        <p>Hasil pendaftaran dan skor kuis telah dikirimkan ke sekolah.</p>
+        <h2>Pengerjaan Selesai! 🎉</h2>
+        <p>Data hasil kuis telah otomatis terkirim ke email sekolah.</p>
         <div class="score-display" id="skor-akhir">Total Skor: 0</div>
         
-        <!-- INFORMASI BENAR DAN SALAH -->
         <div class="detail-box">
             <div class="badge-result badge-benar" id="jumlah-benar">Benar: 0</div>
             <div class="badge-result badge-salah" id="jumlah-salah">Salah: 0</div>
         </div>
 
         <p id="pesan-hasil" style="font-weight: 600; font-size: 16px; margin-bottom: 25px;"></p>
-        <button onclick="kembaliKeMenuUtama()" style="width: 100%;">Menu Utama 🏠</button>
+        <button onclick="kembaliKeMenuUtama()" style="width: 100%;">Kerjakan Kuis Lain 🏠</button>
     </div>
 </div>
 
 <script>
-    // Data Pendaftaran Siswa
     let dataSiswa = {
         nama: '',
         sekolah: '',
@@ -318,9 +322,8 @@
     let daftarSoalAktif = [];
     let jawabanSiswa = [];
 
-    const emailTujuanSekolah = "mimwonoanti3@gmail.com";
+    const emailSekolah = "mimwonoanti3@gmail.com";
 
-    // Mapel berdasarkan Fase/Kelas
     const daftarMapelPerKelas = {
         "Kelas 1": ["Matematika", "Bahasa Indonesia", "IPAS", "PPKn", "Bahasa Inggris"],
         "Kelas 2": ["Matematika", "Bahasa Indonesia", "IPAS", "PPKn", "Bahasa Inggris"],
@@ -330,7 +333,6 @@
         "Kelas 6": ["Matematika", "Bahasa Indonesia", "IPA", "IPS", "PPKn", "Bahasa Inggris"]
     };
 
-    // Bank Soal Terstruktur (Kelas 1–6)
     const bankSoal = {
         "Kelas 1": {
             "Matematika": [
@@ -500,7 +502,7 @@
                 {t: "Unsur intrik cerita berupa waktu dan tempat terjadinya peristiwa disebut...", o: ["Latar/Setting", "Alur", "Amanat", "Tokoh"], j: 0},
                 {t: "Pesan moral yang ingin disampaikan pengarang dalam cerita dinamakan...", o: ["Tema", "Amanat", "Plot", "Watak"], j: 1},
                 {t: "Sinonim dari kata 'Efektif' adalah...", o: ["Tepat guna", "Boros", "Lambat", "Sia-sia"], j: 0},
-                {t: "Singkatan nama gabungan huruf awal dari beberapa kata yang diucapkan sebagai kata dinamakan...", o: ["Akronim", "Anonim", "Sinonim", "Antonim"], j: 0}
+                {t: "Singkatan nama gabungan huruf awal dari beberapa kata dinamakan...", o: ["Akronim", "Anonim", "Sinonim", "Antonim"], j: 0}
             ],
             "IPA": [
                 {t: "Organ pernapasan utama pada manusia adalah...", o: ["Jantung", "Paru-paru", "Hati", "Lambung"], j: 1},
@@ -637,7 +639,7 @@
 
             let opsiHtml = '';
             for (let i = 0; i < curr.o.length; i++) {
-                let activeClass = (jawabanSiswa[soalIndeks] === i) ? 'style="border-color: var(--primary); background-color: #e0e7ff;"' : '';
+                let activeClass = (jawabanSiswa[soalIndeks] === i) ? 'style="border-color: var(--primary); background-color: #e0f2fe;"' : '';
                 opsiHtml += `<button class="btn-opsi" ${activeClass} onclick="jawab(${i})">${String.fromCharCode(65 + i)}. ${curr.o[i]}</button>`;
             }
             document.getElementById('opsi-container').innerHTML = opsiHtml;
@@ -652,7 +654,6 @@
         muatSoal();
     }
 
-    // Navigasi Kuis
     function soalSebelumnya() {
         if (soalIndeks > 0) {
             soalIndeks--;
@@ -663,14 +664,14 @@
     }
 
     function kembaliKeMapelLangsung() {
-        if (confirm("Apakah kamu yakin ingin kembali ke menu mata pelajaran? Progres kuis saat ini tidak disimpan.")) {
+        if (confirm("Apakah Anda yakin ingin kembali ke menu mata pelajaran? Sesi kuis aktif akan dihentikan.")) {
             document.getElementById('step-kuis').classList.add('hidden');
             document.getElementById('step-mapel').classList.remove('hidden');
         }
     }
 
     function kembaliKeKelasLangsung() {
-        if (confirm("Apakah kamu yakin ingin kembali ke menu pilihan kelas? Progres kuis saat ini tidak disimpan.")) {
+        if (confirm("Apakah Anda yakin ingin kembali ke menu pilihan kelas? Sesi kuis aktif akan dihentikan.")) {
             document.getElementById('step-kuis').classList.add('hidden');
             document.getElementById('step-kelas').classList.remove('hidden');
         }
@@ -698,7 +699,7 @@
         document.getElementById('jumlah-benar').innerText = `Benar: ${benar}`;
         document.getElementById('jumlah-salah').innerText = `Salah: ${salah}`;
         
-        let pesan = "Hebat! Pertahankan prestasi belajarmu! 🌟";
+        let pesan = "Sangat bagus! Tingkatkan terus prestasi belajarmu! 🌟";
         if (skorAkhir < 70) {
             pesan = "Tetap semangat belajar ya! Coba lagi yuk 💪";
         } else if (skorAkhir === 100) {
@@ -706,7 +707,6 @@
         }
         document.getElementById('pesan-hasil').innerText = pesan;
 
-        // Kirim data siswa & hasil kuis otomatis ke Email Sekolah
         kirimEmailOtomatis(skorAkhir, benar, salah, totalSoal);
     }
 
@@ -720,15 +720,15 @@
         formData.append("Total Skor", skor);
         formData.append("Jawaban Benar", `${benar} dari ${total}`);
         formData.append("Jawaban Salah", `${salah} dari ${total}`);
-        formData.append("_subject", `Laporan EduQuiz: ${dataSiswa.nama} (${dataSiswa.kelas})`);
+        formData.append("_subject", `Hasil Kuis EduQuiz: ${dataSiswa.nama} (${dataSiswa.kelas})`);
         formData.append("_captcha", "false");
 
-        fetch(`https://formsubmit.co/ajax/${emailTujuanSekolah}`, {
+        fetch(`https://formsubmit.co/ajax/${emailSekolah}`, {
             method: "POST",
             body: formData
         })
         .then(response => response.json())
-        .catch(error => console.error("Gagal mengirim data email:", error));
+        .catch(error => console.error("Proses pengiriman ke email gagal:", error));
     }
 
     function kembaliKeMenuUtama() {
