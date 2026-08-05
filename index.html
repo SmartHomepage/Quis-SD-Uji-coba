@@ -205,7 +205,6 @@
     let skor = 0;
     let daftarSoalAktif = [];
 
-    // Daftar Mata Pelajaran dan Ekstrakurikuler sesuai permintaan
     const daftarMapel = [
         { nama: "Agama Islam", kategori: "mapel", icon: "☪️" },
         { nama: "Al Qur'an", kategori: "mapel", icon: "📖" },
@@ -222,7 +221,6 @@
         { nama: "PJOK", kategori: "mapel", icon: "⚽" },
         { nama: "Seni Budaya", kategori: "mapel", icon: "🎨" },
         { nama: "IPAS", kategori: "mapel", icon: "🌱" },
-        // Ekstrakurikuler
         { nama: "Pramuka", kategori: "ekstra", icon: "⛺" },
         { nama: "Bola Voly", kategori: "ekstra", icon: "🏐" },
         { nama: "Permainan Catur", kategori: "ekstra", icon: "♟️" },
@@ -230,7 +228,6 @@
         { nama: "Tenis Meja", kategori: "ekstra", icon: "🏓" }
     ];
 
-    // Bank Soal Berdasarkan Jenjang Kelas (1 sampai 6) & Mata Pelajaran
     const bankSoalDb = {
         "Agama Islam": {
             "Kelas 1": [
@@ -273,7 +270,7 @@
             "Kelas 2": [
                 {t: "Surat Al-Ikhlas terdiri dari berapa ayat?", o: ["3 ayat", "4 ayat", "5 ayat", "6 ayat"], j: 1},
                 {t: "Membaca Al-Qur'an dimulai dengan bacaan...", o: ["Hamdalah", "Taawudz & Basmalah", "Tahlil", "Tasbih"], j: 1},
-                {t: "Tanda baca baris di depan/depan melingkar dinamakan...", o: ["Fathah", "Kasrah", "Dammah", "Tasydid"], j: 2}
+                {t: "Tanda baca baris di depan melingkar dinamakan...", o: ["Fathah", "Kasrah", "Dammah", "Tasydid"], j: 2}
             ],
             "Kelas 3": [
                 {t: "Surat pendek dalam Al-Qur'an biasa disebut...", o: ["Juz Amma / Juz 30", "Ayat Kursi", "Al-Baqarah", "Yasin"], j: 0},
@@ -299,7 +296,7 @@
         "Fikih": {
             "Kelas 1": [
                 {t: "Sebelum shalat kita wajib melakukan...", o: ["Mandi bola", "Wudhu", "Tidur", "Makan"], j: 1},
-                {t: "Alat yang digunakan untuk bersyahadah jika tidak ada air adalah...", o: ["Batu / Debu (Tayamum)", "Kertas", "Daun", "Plastik"], j: 0},
+                {t: "Alat yang digunakan untuk bersuci jika tidak ada air adalah...", o: ["Batu / Debu (Tayamum)", "Kertas", "Daun", "Plastik"], j: 0},
                 {t: "Air yang suci dan menyucikan contohnya adalah...", o: ["Air teh", "Air hujan", "Air sirup", "Air kelapa"], j: 1}
             ],
             "Kelas 2": [
@@ -308,7 +305,7 @@
                 {t: "Batas aurat laki-laki ketika shalat adalah dari...", o: ["Pusat sampai lutut", "Kepala sampai kaki", "Lengan", "Leher"], j: 0}
             ],
             "Kelas 3": [
-                {t: "Shalat fardhu yang jumlah rakaatnya ada 4 adalah...", o: ["Maghrib", "Shubuh", "Dzuhur", "Ashar (dan Isya)"], j: 3},
+                {t: "Shalat fardhu yang jumlah rakaatnya ada 4 adalah...", o: ["Maghrib", "Shubuh", "Dzuhur", "Ashar"], j: 2},
                 {t: "Najis yang ringan seperti air kencing bayi laki-laki yang belum makan apa-apa selain asi disebut najis...", o: ["Mughaladzah", "Mutawassitah", "Mukhaffafah", "Hadas"], j: 2},
                 {t: "Mandi wajib karena keluar mani atau selesai haid disebut mandi...", o: ["Biasa", "Junub / Janabah", "Kaporit", "Sore"], j: 1}
             ],
@@ -335,9 +332,9 @@
                 {t: "Senyum di hadapan saudaramu adalah bernilai...", o: ["Sedekah", "Dosa", "Hukuman", "Uang"], j: 0}
             ],
             "Kelas 2": [
-                {t: "Anjuran menyayangi sesama makhluk terdapat dalam ajaran hadist Nabi: 'Barang siapa yang tidak menyayangi maka ia tidak akan...', o: ["Disayang", "Kaya", "Hebat", "Pandai"], j: 0},
+                {t: "Anjuran menyayangi sesama makhluk terdapat dalam ajaran hadist: 'Barang siapa yang tidak menyayangi maka ia tidak akan...', o: ["Disayang", "Kaya", "Hebat", "Pandai"], j: 0},
                 {t: "Hadist tentang menuntut ilmu hukumnya wajib bagi setiap...", o: ["Muslim laki-laki dan perempuan", "Anak kaya", "Orang dewasa", "Pejabat"], j: 0},
-                {t: "Perintah berkata yang baik atau lebih baik...", o: ["Diam", "Berbicara keras", "Marah", "Pergi"], j: 0}
+                {t: "Perintah berkata yang baik atau...", o: ["Diam", "Berbicara keras", "Marah", "Pergi"], j: 0}
             ],
             "Kelas 3": [
                 {t: "Dalam hadist tentang niat, amal perbuatan manusia tergantung pada...", o: ["Niatnya", "Uangnya", "Hartanya", "Posisinya"], j: 0},
@@ -350,12 +347,12 @@
                 {t: "Menjaga lisan merupakan tanda kesempurnaan...", o: ["Iman", "Pakaian", "Rumah", "Harta"], j: 0}
             ],
             "Kelas 5": [
-                {t: "Hadist tentang larangan merusak lingkungan atau berbuat kerusakan menekankan prinsip...", o: ["La dharara wa la dhirar (Tidak boleh merugikan)", "Cari keuntungan", "Bebas", "Menang sendiri"], j: 0},
+                {t: "Hadist tentang larangan merusak lingkungan menekankan prinsip...", o: ["La dharara wa la dhirar (Tidak boleh merugikan)", "Cari keuntungan", "Bebas", "Menang sendiri"], j: 0},
                 {t: "Keutamaan silaturahmi dapat melapangkan rezeki dan memanjangkan...", o: ["Umur", "Jalan", "Meja", "Pakaian"], j: 0},
                 {t: "Anjuran memberi salam kepada orang yang dikenal maupun yang...", o: ["Tidak dikenal", "Dimusuhi", "Jauh", "Kaya"], j: 0}
             ],
             "Kelas 6": [
-                {t: "Hadist tentang tanggung jawab pemimpin: 'Kullukum ra'in wa kullukum mas'ulun an...', o: ["Ra'iyatih (Setiap kalian adalah pemimpin dan bertanggung jawab atas rakyatnya)", "Malih", "Bayatih", "Tijaratih"], j: 0},
+                {t: "Hadist tentang tanggung jawab pemimpin: 'Kullukum ra'in wa kullukum mas'ulun an...', o: ["Ra'iyatih (Setiap kalian bertanggung jawab atas rakyatnya)", "Malih", "Bayatih", "Tijaratih"], j: 0},
                 {t: "Perintah mencintai untuk saudaranya apa yang dicintai untuk...", o: ["Dirinya sendiri", "Orang lain", "Gurunya", "Tetangga"], j: 0},
                 {t: "Menuntut ilmu wajib dari buaian sampai ke...", o: ["Liang lahat", "Perguruan tinggi", "Kantor", "Dewasa"], j: 0}
             ]
@@ -369,17 +366,17 @@
             "Kelas 2": [
                 {t: "Istri KH. Ahmad Dahlan yang juga pahlawan nasional bernama...", o: ["Ibu Kartini", "Nyai Ahmad Dahlan (Siti Walidah)", "Cut Nyak Dien", "Dewi Sartika"], j: 1},
                 {t: "Lambang organisasi Muhammadiyah adalah...", o: ["Bintang dan Bulan", "Matahari dengan sinar 12", "Pohon beringin", "Kujang"], j: 1},
-                Warna dasar bendera Muhammadiyah adalah...", o: ["Hijau", "Merah", "Putih", "Hitam"], j: 0}
+                {t: "Warna dasar bendera Muhammadiyah adalah...", o: ["Hijau", "Merah", "Putih", "Hitam"], j: 0}
             ],
             "Kelas 3": [
                 {t: "Kepanjangan dari organisasi otonom Aisyiyah di Muhammadiyah adalah wadah untuk...", o: ["Pemuda", "Kaum Wanita/Istri", "Anak-anak", "Mahasiswa"], j: 1},
                 {t: "Amal Usaha Muhammadiyah (AUM) di bidang pendidikan contohnya adalah...", o: ["Rumah sakit", "Panti asuhan", "Madrasah / SD Muhammadiyah", "Masjid"], j: 2},
-                {T: "Pesan utama pendiri Muhammadiyah agar umat islam kembali kepada...", o: ["Al-Qur'an dan Sunnah", "Adat istiadat", "Budaya asing", "Pendapat bebas"], j: 0}
+                {t: "Pesan utama pendiri Muhammadiyah agar umat islam kembali kepada...", o: ["Al-Qur'an dan Sunnah", "Adat istiadat", "Budaya asing", "Pendapat bebas"], j: 0}
             ],
             "Kelas 4": [
                 {t: "Organisasi otonom pemuda Muhammadiyah untuk usia remaja putra dinamakan...", o: ["Nasyiatul Aisyiyah", "Ikatan Pelajar Muhammadiyah (IPM)", "Tapak Suci", "Hizbul Wathan"], j: 1},
                 {t: "Kepanduan islam di dalam Muhammadiyah dikenal dengan nama...", o: ["Pramuka", "Hizbul Wathan (HW)", "Boy scout", "Menwa"], j: 1},
-                {t: "Seni bela diri resmi yang bernaung di bawah Muhammadiyah adalah...", o: ["Pencat silat Tapak Suci", "Karate", "Taekwondo", "Pencak silat biasa"], j: 0}
+                {t: "Seni bela diri resmi yang bernaung di bawah Muhammadiyah adalah...", o: ["Pencak silat Tapak Suci", "Karate", "Taekwondo", "Pencak silat biasa"], j: 0}
             ],
             "Kelas 5": [
                 {t: "Tujuan didirikannya Muhammadiyah adalah menegakkan dan menjunjung tinggi Agama Islam sehingga terwujud masyarakat Islam yang...", o: ["Kaya raya", "Sejahtera", "Sebenar-benarnya", "Modern"], j: 2},
@@ -414,12 +411,12 @@
                 {t: "Pusat pemerintahan Islam pada masa Khulafaur Rasyidin berada di...", o: ["Madinah", "Baghdad", "Kairo", "Istanbul"], j: 0}
             ],
             "Kelas 5": [
-                {t: "Masa keemasan Islam (Islamic Golden Age) banyak melahirkan ilmuwan muslim di bidang kedokteran seperti...", o: ["Ibnu Sina (Avicenna)", "Isaac Newton", "Albert Einstein", "Thomas Edison"], j: 0},
+                {t: "Masa keemasan Islam banyak melahirkan ilmuwan muslim di bidang kedokteran seperti...", o: ["Ibnu Sina (Avicenna)", "Isaac Newton", "Albert Einstein", "Thomas Edison"], j: 0},
                 {t: "Dinasti Umayyah berpusat kekuasaannya di kota...", o: ["Damaskus", "Baghdad", "Kordoba", "Makkah"], j: 0},
                 {t: "Tokoh pendiri Daulah Abbasiyah adalah...", o: ["Abul Abbas As-Saffah", "Muawiyah bin Abi Sufyan", "Harun al-Rasyid", "Salahuddin al-Ayyubi"], j: 0}
             ],
             "Kelas 6": [
-                {t: "Masuknya Islam ke Nusantara (Indonesia) dibawa oleh para pedagang muslim dari...", o: ["Gujarat, Persia, dan Arab", "Eropa", "Amerika", "Australia"], j: 0},
+                {t: "Masuknya Islam ke Nusantara dibawa oleh para pedagang muslim dari...", o: ["Gujarat, Persia, dan Arab", "Eropa", "Amerika", "Australia"], j: 0},
                 {t: "Kerajaan Islam pertama di pulau Jawa adalah...", o: ["Demak", "Samudera Pasai", "Mataram Islam", "Banten"], j: 0},
                 {t: "Wali Songo yang terkenal menyebarkan Islam di tanah Jawa berjumlah...", o: ["7 orang", "9 orang", "12 orang", "25 orang"], j: 1}
             ]
@@ -431,7 +428,7 @@
                 {t: "Kewan sing unine 'kruk-kuk' yaiku...", o: ["Kucing", "Dines/Bebek", "Pitik", "Kutut"], j: 3}
             ],
             "Kelas 2": [
-                {t: "Tembung kosok baline 'gedhe' yaiku...", c: ["Cilik", "Dhuwur", "Dawane", "Amba"], j: 0},
+                {t: "Tembung kosok baline 'gedhe' yaiku...", o: ["Cilik", "Dhuwur", "Dawane", "Amba"], j: 0},
                 {t: "Yen ketemu bapak ibu guru ing esuk hari ucapane...", o: ["Sugeng enjang", "Sugeng siang", "Sugeng dalu", "Sugeng tindak"], j: 0},
                 {t: "Basa krama alus saka tembung 'turu' yaiku...", o: ["Tilem", "Nendra", "Sare", "Kuru"], j: 2}
             ],
@@ -480,7 +477,7 @@
             "Kelas 5": [
                 {t: "Karangan nonfiksi yang berisi paparan atau penjelasan suatu informasi disebut teks...", o: ["Narasi", "Eksplanasi / Eksposisi", "Puisi", "Drama"], j: 1},
                 {t: "Surat resmi biasanya dikirimkan oleh...", o: ["Instansi / Kantor / Sekolah", "Teman akrab", "Adik kepada kakak", "Pribadi ke pacar"], j: 0},
-                {t: "Penggunaan EYD/PUEBI yang tepat pada penulisan gelar akademik dipisahkan dengan tanda...", o: ["Koma (,)", "Titik (.)", "Hubung (-)", "Garis miring (/)"], j: 0}
+                {t: "Penggunaan EYD yang tepat pada penulisan gelar akademik dipisahkan dengan tanda...", o: ["Koma (,)", "Titik (.)", "Hubung (-)", "Garis miring (/)"], j: 0}
             ],
             "Kelas 6": [
                 {t: "Bagian awal surat pribadi atau surat resmi disebut...", o: ["Kepala surat / Alamat dan tanggal", "Salam penutup", "Kesimpulan", "Daftar pustaka"], j: 0},
@@ -491,12 +488,12 @@
         "Bahasa Inggris": {
             "Kelas 1": [
                 {t: "Bahasa Inggris dari angka 'Satu' adalah...", o: ["One", "Two", "Three", "Four"], j: 0},
-                {t: "What color is the sky? (Warna langit adalah...)", o: ["Blue", "Red", "Green", "Black"], j: 0},
+                {t: "What color is the sky?", o: ["Blue", "Red", "Green", "Black"], j: 0},
                 {t: "Bahasa Inggris dari 'Kucing' adalah...", o: ["Dog", "Cat", "Bird", "Fish"], j: 1}
             ],
             "Kelas 2": [
                 {t: "Good morning artinya dalam bahasa Indonesia adalah...", o: ["Selamat malam", "Selamat pagi", "Selamat siang", "Selamat tinggal"], j: 1},
-                {t: "There are ... days in a week (Ada berapa hari dalam seminggu?)", o: ["5", "6", "7", "12"], j: 2},
+                {t: "There are ... days in a week", o: ["5", "6", "7", "12"], j: 2},
                 {t: "Bahasa Inggris dari buah 'Pisang' adalah...", o: ["Apple", "Banana", "Orange", "Mango"], j: 1}
             ],
             "Kelas 3": [
@@ -505,12 +502,12 @@
                 {t: "What is the English of 'Buku tulis'?", o: ["Book / Notebook", "Pen", "Pencil", "Ruler"], j: 0}
             ],
             "Kelas 4": [
-                {t: "She ... to school everyday (Go / Goes)", o: ["Go", "Goes", "Going", "Gone"], j: 1},
+                {t: "She ... to school everyday", o: ["Go", "Goes", "Going", "Gone"], j: 1},
                 {t: "The elephant is big, but the mouse is...", o: ["Small", "Tall", "Long", "Heavy"], j: 0},
                 {t: "What time is it? Jam 07.00 in English is...", o: ["Seven o'clock", "Six o'clock", "Eight o'clock", "Nine o'clock"], j: 0}
             ],
             "Kelas 5": [
-                {t: "Yesterday I ... to the library. (Go / Went)", o: ["Go", "Went", "Gone", "Going"], j: 1},
+                {t: "Yesterday I ... to the library.", o: ["Go", "Went", "Gone", "Going"], j: 1},
                 {t: "The antonym of 'hot' is...", o: ["Cold", "Warm", "Cool", "Dry"], j: 0},
                 {t: "We study English in the ...", o: ["Classroom", "Kitchen", "Bathroom", "Garage"], j: 0}
             ],
@@ -523,7 +520,7 @@
         "Bahasa Arab": {
             "Kelas 1": [
                 {t: "Bahasa Arabnya 'Kitab / Buku' adalah...", o: ["Kitabun", "Qolamun", "Maktabun", "Kurrosatun"], j: 0},
-                {t: "Bahasa Arabnya angka 1 (satu) adalah...", o: ["Wahidun", "Itsnani", "Salasatun", "Arba'atun"], j: 0},
+                {t: "Bahasa Arabnya angka 1 adalah...", o: ["Wahidun", "Itsnani", "Salasatun", "Arba'atun"], j: 0},
                 {t: "Kepala dalam bahasa Arab disebut...", o: ["Rasun", "Yadun", "Rijlun", "Anfun"], j: 0}
             ],
             "Kelas 2": [
@@ -533,7 +530,7 @@
             ],
             "Kelas 3": [
                 {t: "Apa bahasa Arabnya 'Papan Tulis'?", o: ["Sabburotun", "Maktabun", "Qolamun", "Mithoroh"], j: 0},
-                {t: "Angka 10 (sepuluh) dalam bahasa Arab adalah...", o: ["Asyratun", "Khomsatun", "Sab'atun", "Tis'atun"], j: 0},
+                {t: "Angka 10 dalam bahasa Arab adalah...", o: ["Asyratun", "Khomsatun", "Sab'atun", "Tis'atun"], j: 0},
                 {t: "Nama-nama hari dalam bahasa Arab, hari senin disebut...", o: ["Al-Itsnain", "Al-Ahad", "Al-Tsulatsa", "Al-Arba'a"], j: 0}
             ],
             "Kelas 4": [
@@ -542,12 +539,12 @@
                 {t: "Peralatan dapur 'Miftaahun' artinya...", o: ["Kunci", "Sendok", "Piring", "Gelas"], j: 0}
             ],
             "Kelas 5": [
-                {t: "Fi'il mudhari' (kata kerja untuk sedang/akan dilakukan) dari kata 'zahaba' (pergi) adalah...", o: ["Yadzhabu", "dzahaba", "idzhab", "zahibun"], j: 0},
+                {t: "Fi'il mudhari' dari kata 'zahaba' (pergi) adalah...", o: ["Yadzhabu", "dzahaba", "idzhab", "zahibun"], j: 0},
                 {t: "Anggota tubuh 'Yadun' artinya tangan, kalau 'Rijlun' artinya...", o: ["Kaki", "Telinga", "Mata", "Hidung"], j: 0},
                 {t: "Bahasa Arabnya 'Perpustakaan' adalah...", o: ["Maktabatun", "Maktabun", "Faslun", "Mat'amun"], j: 0}
             ],
             "Kelas 6": [
-                {t: "Isim isyarah (kata tunjuk) untuk jarak jauh muannats (perempuan) adalah...", o: ["Tilka", "Hazihi", "Zalika", "Haza"], j: 0},
+                {t: "Isim isyarah untuk jarak jauh muannats adalah...", o: ["Tilka", "Hazihi", "Zalika", "Haza"], j: 0},
                 {t: "Lawan kata dari 'Kabirun' (besar) adalah...", o: ["Shoghirun (kecil)", "Jamilun", "Thowilun", "Qoribun"], j: 0},
                 {t: "Arti dari kalimat 'Uhibbul lughatal arabiyyah' adalah...", o: ["Saya suka bahasa Arab", "Saya benci bahasa", "Saya belajar matematika", "Saya menulis buku"], j: 0}
             ]
@@ -565,7 +562,7 @@
             ],
             "Kelas 3": [
                 {t: "Hasil dari 125 + 342 adalah...", o: ["467", "457", "476", "567"], j: 0},
-                {t: "Pecahan 1/2 dibaca...", o: ["Sepertiga", "Seperempat", "Satu setengah / Setengah", "Seperlima"], j: 2},
+                {t: "Pecahan 1/2 dibaca...", o: ["Sepertiga", "Seperempat", "Setengah", "Seperlima"], j: 2},
                 {t: "Keliling persegi yang memiliki sisi 10 cm adalah...", o: ["20 cm", "30 cm", "40 cm", "100 cm"], j: 2}
             ],
             "Kelas 4": [
@@ -619,13 +616,13 @@
         "PJOK": {
             "Kelas 1": [
                 {t: "Gerakan berjalan dan berlari termasuk gerak...", o: ["Lokomotor", "Non-lokomotor", "Manipulatif", "Diam"], j: 0},
-                {t: "Sebelum berolahraga kita wajib melakukan...", o: ["Pemanasan (Stretching)", "Tidur", "Makan kenyang", "Mandi"], j: 0},
+                {t: "Sebelum berolahraga kita wajib melakukan...", o: ["Pemanasan", "Tidur", "Makan kenyang", "Mandi"], j: 0},
                 {t: "Alat permainan sepak bola adalah...", o: ["Bola kaki", "Bola basket", "Kok bulutangkis", "Kelereng"], j: 0}
             ],
             "Kelas 2": [
-                {t: "Gerakan memantulkan bola basket ke lantai disebut...", o: ["Dribbling / Memantulkan", "Passing", "Shooting", "Jumping"], j: 0},
+                {t: "Gerakan memantulkan bola basket ke lantai disebut...", o: ["Dribbling", "Passing", "Shooting", "Jumping"], j: 0},
                 {t: "Latihan melatih kekuatan otot kaki dapat dilakukan dengan cara...", o: ["Loncat tali / Squat jump", "Lempar beban tangan", "Push up", "Angkat kepala"], j: 0},
-                {t: "Senam lantai yang dilakukan dengan menggulingkan badan ke depan disebut...", o: ["Guling depan (Forward roll)", "Meroda", "Sikap lilin", "Kayang"], j: 0}
+                {t: "Senam lantai yang dilakukan dengan menggulingkan badan ke depan disebut...", o: ["Guling depan", "Meroda", "Sikap lilin", "Kayang"], j: 0}
             ],
             "Kelas 3": [
                 {t: "Kombinasi gerak lokomotor dan manipulatif dapat ditemukan dalam permainan...", o: ["Menendang bola ke gawang", "Berdiri tegak", "Duduk diam", "Tidur santai"], j: 0},
@@ -634,17 +631,17 @@
             ],
             "Kelas 4": [
                 {t: "Dalam permainan bola voli, teknik memukul bola dari atas net disebut...", o: ["Smash / Spike", "Passing", "Blocking", "Service"], j: 0},
-                {t: "Nomor lari jarak pendek dalam atletik dinamakan lari...", o: ["Sprint / Cepat", "Maraton", "Estafet jauh", "Cross country"], j: 0},
-                {t: "Unsur kebugaran jasmani yang menunjukkan kemampuan otot menahan beban disebut...", o: ["Kekuatan (Strength)", "Kelenturan", "Kecepatan", "Keseimbangan"], j: 0}
+                {t: "Nomor lari jarak pendek dalam atletik dinamakan lari...", o: ["Sprint / Cepat", "Maraton", "Estafet", "Cross country"], j: 0},
+                {t: "Unsur kebugaran jasmani yang menunjukkan kemampuan otot menahan beban disebut...", o: ["Kekuatan", "Kelenturan", "Kecepatan", "Keseimbangan"], j: 0}
             ],
             "Kelas 5": [
                 {t: "Induk organisasi sepak bola nasional di Indonesia adalah...", o: ["PSSI", "PBSI", "PBVSI", "PERBASI"], j: 0},
-                {t: "Gaya renang yang posisi dadanya menghadap ke permukaan air disebut gaya...", o: ["Dada (Breaststroke)", "Punggung", "Bebas", "Diatas air"], j: 0},
-                {t: "Penyakit yang timbul akibat kurangnya menjaga kebugaran dan pola hidup tidak sehat disebut penyakit...", o: ["Hipokinetik / Degeneratif", "Menular", "Bawaan", "Ringan"], j: 0}
+                {t: "Gaya renang yang posisi dadanya menghadap ke permukaan air disebut gaya...", o: ["Dada", "Punggung", "Bebas", "Diatas air"], j: 0},
+                {t: "Penyakit yang timbul akibat kurangnya menjaga kebugaran disebut penyakit...", o: ["Hipokinetik / Degeneratif", "Menular", "Bawaan", "Ringan"], j: 0}
             ],
             "Kelas 6": [
                 {t: "Dalam permainan bola basket, teknik memasukkan bola tepat ke ring dengan melangkah dua langkah disebut...", o: ["Lay-up shoot", "Jump shoot", "Dunk", "Pivot"], j: 0},
-                {t: "Tes Kebugaran Jasmani Indonesia (TKJI) mengukur komponen kebugaran anak sekolah usia...", o: ["SD (Sekolah Dasar)", "Umum", "Lansia", "Balita"], j: 0},
+                {t: "Tes Kebugaran Jasmani Indonesia (TKJI) mengukur komponen kebugaran anak sekolah usia...", o: ["SD", "Umum", "Lansia", "Balita"], j: 0},
                 {t: "Pendaratan yang benar saat melakukan lompat jauh adalah menggunakan...", o: ["Kedua kaki mengeper", "Satu tangan", "Kepala", "Perut"], j: 0}
             ]
         },
@@ -652,7 +649,7 @@
             "Kelas 1": [
                 {t: "Alat untuk menggambar garis dan pola di buku adalah...", o: ["Pensil", "Gunting", "Pisau", "Kuas cat besar"], j: 0},
                 {t: "Warna dasar primer terdiri dari...", o: ["Merah, Kuning, Biru", "Hitam dan Putih", "Hijau dan Ungu", "Oranye dan Pink"], j: 0},
-                {t: "Bernyanyi bersama-sama tanpa iringan alat musik disebut bernyanyi secara...", o: ["A Cappella / Unisono", "Paduan suara besar", "Solo", "Band"], j: 0}
+                {t: "Bernyanyi bersama-sama tanpa iringan alat musik disebut...", o: ["A Cappella / Unisono", "Paduan suara besar", "Solo", "Band"], j: 0}
             ],
             "Kelas 2": [
                 {t: "Membuat karya seni rupa dengan cara menempel potongan bahan pada bidang datar disebut teknik...", o: ["Kolase / Montase", "Lukis", "Pahat", "Ukir"], j: 0},
@@ -665,7 +662,7 @@
                 {t: "Alat musik melodis tradisional Jawa yang ditiup adalah...", o: ["Suling bambu", "Gong", "Kendang", "Bonang"], j: 0}
             ],
             "Kelas 4": [
-                {t: "Teknik membatik tradisional menggunakan alat utama berupa...", o: ["Canting dan malam (lilin)", "Kuas cat air", "Pahat besi", "Lem kertas"], j: 0},
+                {t: "Teknik membatik tradisional menggunakan alat utama berupa...", o: ["Canting dan malam", "Kuas cat air", "Pahat besi", "Lem kertas"], j: 0},
                 {t: "Tangga nada diatonis mayor berkesan atau bernuansa...", o: ["Gembira dan bersemangat", "Sedih dan haru", "Sunyi", "Mencekam"], j: 0},
                 {t: "Pementasan teater boneka tangan menggunakan sarana...", o: ["Boneka kain yang digerakkan tangan", "Wayang kulit", "Topeng besar", "Robot"], j: 0}
             ],
@@ -694,7 +691,7 @@
             "Kelas 3": [
                 {t: "Perubahan wujud dari air cair menjadi uap gas disebut...", o: ["Menguap", "Mencair", "Membeku", "Mengembun"], j: 0},
                 {t: "Sumber daya alam yang tidak dapat diperbaharui contohnya adalah...", o: ["Minyak bumi dan batubara", "Air sungai", "Tumbuhan hutan", "Angin"], j: 0},
-                {t: "Gaya yang timbul karena sentuhan atau gesekan dua permukaan benda disebut gaya...", o: ["Gesek", "Magnet", "Gravitasi", "Pegas"], j: 0}
+                {t: "Gaya yang timbul karena sentuhan atau gesekan dua permukaan benda disebut...", o: ["Gaya gesek", "Magnet", "Gravitasi", "Pegas"], j: 0}
             ],
             "Kelas 4": [
                 {t: "Proses pembuatan makanan pada tumbuhan hijau dinamakan...", o: ["Fotosintesis", "Respirasi", "Erosi", "Metamorfosis"], j: 0},
@@ -712,7 +709,6 @@
                 {t: "Lapisan udara yang menyelimuti bumi disebut...", o: ["Atmosfer", "Litosfer", "Hidrosfer", "Biosfer"], j: 0}
             ]
         },
-        // Ekstrakurikuler menggunakan set template generik berkualitas yang disesuaikan
         "Pramuka": {
             "Kelas 1": [
                 {t: "Salam pramuka ditunjukkan dengan sikap hormat dan teriakan...", o: ["Salam!", "Merdeka!", "Jaya!", "Siap!"], j: 0},
@@ -721,13 +717,13 @@
             ],
             "Kelas 2": [
                 {t: "Janji atau darma kesetiaan bagi pramuka siaga disebut...", o: ["Dwi Darma", "Dasa Darma", "Trisatya", "Pancasila"], j: 0},
-                {t: "Bapak Pandu Sedunia (Father of Scouting) bernama...", o: ["Robert Baden-Powell", "Soekarno", "Sudirman", "H. Agus Salim"], j: 0},
+                {t: "Bapak Pandu Sedunia bernama...", o: ["Robert Baden-Powell", "Soekarno", "Sudirman", "H. Agus Salim"], j: 0},
                 {t: "Kelompok kecil dalam pramuka siaga dinamakan...", o: ["Barung", "Regu", "Sangga", "Ambalan"], j: 0}
             ],
             "Kelas 3": [
                 {t: "Trisatya dalam gerakan pramuka berisi berapa ikrar janji?", o: ["3 janji", "2 janji", "5 janji", "10 janji"], j: 0},
                 {t: "Pramuka tingkat penggalang biasanya diikuti oleh siswa tingkat...", o: ["SD kelas 4 - 6 / SMP", "SD kelas 1 - 3", "SMA", "Umum"], j: 0},
-                {t: "Simpul dasar dalam tali-temali pramuka untuk menyambung tali sama besar adalah simpul...", o: ["Ujung / Hidup / Mati", "Pangkal", "Jangkar", "Kursi"], j: 0}
+                {t: "Simpul dasar dalam tali-temali pramuka untuk menyambung tali sama besar adalah...", o: ["Simpul Ujung / Hidup / Mati", "Pangkal", "Jangkar", "Kursi"], j: 0}
             ],
             "Kelas 4": [
                 {t: "Dasa Darma Pramuka terdiri dari berapa ketentuan moral?", o: ["10 darma", "5 darma", "3 darma", "7 darma"], j: 0},
@@ -735,7 +731,7 @@
                 {t: "Kelompok dalam satuan penggalang dinamakan...", o: ["Regu", "Barung", "Sangga", "Pasukan"], j: 0}
             ],
             "Kelas 5": [
-                {t: "Semboyan gerakan pramuka 'Satyaku ku dharmakan dharmaku ku baktikan' terdapat dalam...", o: ["Trisatya", "Dasa Darma", "Pancasila", "UUD 1945"], j: 0},
+                {t: "Semboyan gerakan pramuka terdapat dalam...", o: ["Trisatya", "Dasa Darma", "Pancasila", "UUD 1945"], j: 0},
                 {t: "Tanda Kecakapan Khusus (TKK) dalam pramuka dipasang di bagian lengan baju sebelah...", o: ["Kanan", "Kiri", "Dada tengah", "Pundak"], j: 0},
                 {t: "Perkemahan besar penggalang di tingkat nasional disebut...", o: ["Jambore Nasional (Jamnas)", "Lomba tingkat", "Gladian", "Perthika"], j: 0}
             ],
@@ -763,13 +759,13 @@
             ],
             "Kelas 4": [
                 {t: "Pukulan keras menukik ke daerah lawan untuk mematikan angka disebut...", o: ["Smash / Spike", "Passing", "Service", "Blocking"], j: 0},
-                {t: "Pertandingan bola voly umumnya mencari kemenangan sebanyak berapa set (The best of ...)?", o: ["Best of five (3 set kemenangan)", "1 set saja", "7 set", "4 set"], j: 0},
+                {t: "Pertandingan bola voly umumnya mencari kemenangan sebanyak berapa set?", o: ["Best of five (3 set kemenangan)", "1 set saja", "7 set", "4 set"], j: 0},
                 {t: "Posisi pemain pengatur serangan dalam tim voly dinamakan...", o: ["Setter / Tosser", "Libero", "Bloker", "Server"], j: 0}
             ],
             "Kelas 5": [
                 {t: "Bendera batas garis lapangan voly dipegang oleh petugas garis dinamakan...", o: ["Linesman", "Referee", "Coach", "Captain"], j: 0},
                 {t: "Teknik membendung serangan smash lawan di dekat net disebut...", o: ["Blocking", "Passing", "Service", "Dribbling"], j: 0},
-                {t: "Angka kemenangan normal dalam satu set permainan bola voly (kecuali set penentuan) adalah...", o: ["25 poin", "15 poin", "21 poin", "30 poin"], j: 0}
+                {t: "Angka kemenangan normal dalam satu set permainan bola voly adalah...", o: ["25 poin", "15 poin", "21 poin", "30 poin"], j: 0}
             ],
             "Kelas 6": [
                 {t: "Rotasi perpindahan posisi pemain bola voly bergeser arah...", o: ["Searah jarum jam", "Berlawanan arah", "Bebas", "Menyilang"], j: 0},
@@ -781,48 +777,48 @@
             "Kelas 1": [
                 {t: "Permainan catur dimainkan oleh berapa orang pemain?", o: ["2 orang", "1 orang", "4 orang", "3 orang"], j: 0},
                 {t: "Papan catur memiliki kotak-kotak petak warna berselang-seling hitam dan...", o: ["Putih", "Merah", "Hijau", "Biru"], j: 0},
-                {t: "Buah catur yang jalannya lurus ke depan disebut buah...", o: ["Pion (Bidak)", "Benteng", "Kuda", "Menteri"], j: 0}
+                {t: "Buah catur yang jalannya lurus ke depan disebut buah...", o: ["Pion", "Benteng", "Kuda", "Menteri"], j: 0}
             ],
             "Kelas 2": [
-                {t: "Buah catur yang jalannya membentuk huruf 'L' adalah...", o: ["Kuda (Knight)", "Gajah", "Benteng", "Menteri"], j: 0},
-                {t: "Buah catur paling penting yang harus dilindungi dari skakmat adalah...", o: ["Raja (King)", "Menteri", "Pion", "Benteng"], j: 0},
+                {t: "Buah catur yang jalannya membentuk huruf 'L' adalah...", o: ["Kuda", "Gajah", "Benteng", "Menteri"], j: 0},
+                {t: "Buah catur paling penting yang harus dilindungi dari skakmat adalah...", o: ["Raja", "Menteri", "Pion", "Benteng"], j: 0},
                 {t: "Jumlah total kotak petak pada papan catur seluruhnya adalah...", o: ["64 kotak", "32 kotak", "100 kotak", "50 kotak"], j: 0}
             ],
             "Kelas 3": [
-                {t: "Buah catur yang jalannya bebas secara diagonal (serong) sejauh apapun adalah...", o: ["Gajah (Bishop)", "Benteng", "Kuda", "Raja"], j: 0},
-                {t: "Istilah ancaman langsung terhadap Raja lawan dalam catur dinamakan...", o: ["Skak (Check)", "Skakmat", "Remis", "Pion"], j: 0},
-                {t: "Buah catur yang bergerak lurus ke depan, belakang, atau samping tanpa batas disebut...", o: ["Menteri (Queen) / Benteng", "Pion", "Kuda", "Raja"], j: 0}
+                {t: "Buah catur yang jalannya bebas secara diagonal (serong) sejauh apapun adalah...", o: ["Gajah", "Benteng", "Kuda", "Raja"], j: 0},
+                {t: "Istilah ancaman langsung terhadap Raja lawan dalam catur dinamakan...", o: ["Skak", "Skakmat", "Remis", "Pion"], j: 0},
+                {t: "Buah catur yang bergerak lurus ke depan, belakang, atau samping tanpa batas disebut...", o: ["Menteri / Benteng", "Pion", "Kuda", "Raja"], j: 0}
             ],
             "Kelas 4": [
-                {t: "Kondisi akhir permainan catur di mana Raja terancam dan tidak bisa menyelamatkan diri disebut...", o: ["Skakmat (Checkmate)", "Remis (Draw)", "Skak", "Buka langkah"], j: 0},
-                {t: "Jika langkah kedua pemain sudah berulang atau tidak ada yang bisa menang, hasil disebut...", o: ["Remis (Draw)", "Skakmat", "Menang mutlak", "Kalah"], j: 0},
-                {t: "Pion catur yang berhasil mencapai petak paling ujung seberang papan dapat berubah menjadi...", o: ["Menteri atau buah lain (Promotion)", "Hilang", "Raja", "Tetap pion"], j: 0}
+                {t: "Kondisi akhir permainan catur di mana Raja terancam dan tidak bisa menyelamatkan diri disebut...", o: ["Skakmat", "Remis", "Skak", "Buka langkah"], j: 0},
+                {t: "Jika langkah kedua pemain sudah berulang atau tidak ada yang bisa menang, hasil disebut...", o: ["Remis", "Skakmat", "Menang mutlak", "Kalah"], j: 0},
+                {t: "Pion catur yang berhasil mencapai petak paling ujung seberang papan dapat berubah menjadi...", o: ["Menteri atau buah lain", "Hilang", "Raja", "Tetap pion"], j: 0}
             ],
             "Kelas 5": [
-                {t: "Langkah khusus pertukaran posisi Raja dan Benteng dalam satu langkah disebut...", o: ["Rokade (Castling)", "En passant", "Skakmat", "Promosi"], j: 0},
+                {t: "Langkah khusus pertukaran posisi Raja dan Benteng dalam satu langkah disebut...", o: ["Rokade", "En passant", "Skakmat", "Promosi"], j: 0},
                 {t: "Aturan menangkap pion lawan secara khusus saat pion melangkah dua langkah disebut...", o: ["En passant", "Rokade", "Skak", "Remis"], j: 0},
                 {t: "Induk organisasi catur resmi di Indonesia adalah...", o: ["PERCASI", "PSSI", "PBSI", "FORKI"], j: 0}
             ],
             "Kelas 6": [
-                {t: "Strategi pembukaan dalam permainan catur (opening) bertujuan untuk...", o: ["Menguasai pusat papan dan melindungi raja", "Menyerang saja", "Menyerahkan pion", "Mengunci benteng"], j: 0},
-                {t: "Gelar tertinggi dalam dunia olahraga catur profesional internasional adalah...", o: ["Grandmaster (GM)", "Master Nasional", "Juara Dunia", "Wasit Catur"], j: 0},
-                {t: "Waktu berpikir dalam turnamen catur sering diukur menggunakan alat khusus bernama...", o: ["Jam catur (Chess clock)", "Stopwatch", "Kalender", "Alarm"], j: 0}
+                {t: "Strategi pembukaan dalam permainan catur bertujuan untuk...", o: ["Menguasai pusat papan dan melindungi raja", "Menyerang saja", "Menyerahkan pion", "Mengunci benteng"], j: 0},
+                {t: "Gelar tertinggi dalam dunia olahraga catur profesional internasional adalah...", o: ["Grandmaster", "Master Nasional", "Juara Dunia", "Wasit Catur"], j: 0},
+                {t: "Waktu berpikir dalam turnamen catur sering diukur menggunakan alat khusus bernama...", o: ["Jam catur", "Stopwatch", "Kalender", "Alarm"], j: 0}
             ]
         },
         "Bulutangkis": {
             "Kelas 1": [
                 {t: "Alat pemukul bola dalam permainan bulutangkis dinamakan...", o: ["Raket", "Bat", "Tongkat", "Kayu pemukul"], j: 0},
-                {t: "Bola bulutangkis yang berbulu dinamakan...", o: ["Kok (Shuttlecock)", "Bola tenis", "Bola bekel", "Kelereng"], j: 0},
+                {t: "Bola bulutangkis yang berbulu dinamakan...", o: ["Kok", "Bola tenis", "Bola bekel", "Kelereng"], j: 0},
                 {t: "Permainan bulutangkis dimainkan di atas lapangan bergaris dengan pembatas...", o: ["Net", "Tembok", "Garis kapur saja", "Kursi"], j: 0}
             ],
             "Kelas 2": [
-                {t: "Pukulan pembuka servis dalam bulutangkis dilakukan dengan cara...", o: ["Memukul kok dari bawah atau atas melintasi net", "Melempar kok", "Menendang", "Menyusur tanah"], j: 0},
-                {t: "Pertandingan bulutangkis dapat dimainkan secara perseorangan disebut...", o: ["Tunggal (Singles)", "Ganda", "Campuran", "Beregu"], j: 0},
+                {t: "Pukulan pembuka servis dalam bulutangkis dilakukan dengan cara...", o: ["Memukul kok melintasi net", "Melempar kok", "Menendang", "Menyusur tanah"], j: 0},
+                {t: "Pertandingan bulutangkis dapat dimainkan secara perseorangan disebut...", o: ["Tunggal", "Ganda", "Campuran", "Beregu"], j: 0},
                 {t: "Pukulan keras menukik ke bawah dalam bulutangkis disebut...", o: ["Smash", "Lob", "Dropshot", "Netting"], j: 0}
             ],
             "Kelas 3": [
-                {t: "Pukulan melambung jauh ke belakang lapangan lawan disebut pukulan...", o: ["Lob / Clear", "Smash", "Netting", "Drive"], j: 0},
-                {t: "Pertandingan bulutangkis standar internasional mencari kemenangan sebanyak berapa game (set)?", o: ["Best of three (2 game kemenangan)", "1 game", "5 game", "4 game"], j: 0},
+                {t: "Pukulan melambung jauh ke belakang lapangan lawan disebut pukulan...", o: ["Lob", "Smash", "Netting", "Drive"], j: 0},
+                {t: "Pertandingan bulutangkis standar internasional mencari kemenangan sebanyak berapa game?", o: ["Best of three (2 game kemenangan)", "1 game", "5 game", "4 game"], j: 0},
                 {t: "Pukulan halus di dekat net agar kok jatuh dekat net lawan disebut...", o: ["Netting", "Smash", "Lob", "Drive"], j: 0}
             ],
             "Kelas 4": [
@@ -837,14 +833,14 @@
             ],
             "Kelas 6": [
                 {t: "Kejuaraan beregu putri bergengsi tingkat dunia dalam bulutangkis dinamakan...", o: ["Uber Cup", "Thomas Cup", "Sudirman Cup", "World Championship"], j: 0},
-                {t: "Servis pendek (short service) biasanya sering digunakan dalam nomor...", o: ["Ganda", "Tunggal putra", "Tunggal putri bebas", "Latihan sendiri"], j: 0},
-                {t: "Turnamen bulutangkis tertua dan paling bergengsi di dunia setiap tahun diselenggarakan di...", o: ["Inggris (All England)", "Indonesia", "China", "Jepang"], j: 0}
+                {t: "Servis pendek biasanya sering digunakan dalam nomor...", o: ["Ganda", "Tunggal putra", "Tunggal putri bebas", "Latihan sendiri"], j: 0},
+                {t: "Turnamen bulutangkis tertua dan paling bergengsi di dunia setiap tahun diselenggarakan di...", o: ["Inggris", "Indonesia", "China", "Jepang"], j: 0}
             ]
         },
         "Tenis Meja": {
             "Kelas 1": [
                 {t: "Permainan tenis meja sering juga disebut dengan nama...", o: ["Pingpong", "Basket", "Voli mini", "Bulu tangkis"], j: 0},
-                {t: "Alat pemukul dalam tenis meja disebut...", o: ["Bet (Bat)", "Raket", "Tongkat", "Kayu panjang"], j: 0},
+                {t: "Alat pemukul dalam tenis meja disebut...", o: ["Bet", "Raket", "Tongkat", "Kayu panjang"], j: 0},
                 {t: "Meja permainan tenis meja dilengkapi dengan pembatas berupa...", o: ["Net kecil", "Tembok tinggi", "Garis kapur", "Tali rafia"], j: 0}
             ],
             "Kelas 2": [
@@ -853,14 +849,14 @@
                 {t: "Ukuran meja tenis meja berbentuk persegi panjang dengan permukaan yang...", o: ["Datar dan memantulkan bola", "Kasar dan berpasir", "Empuk berlapis busa", "Berlubang-lubang"], j: 0}
             ],
             "Kelas 3": [
-                {t: "Pegang bet (grip) dalam tenis meja yang menyerupai cara memegang pena disebut...", o: ["Penholder grip", "Shakehand grip", "American grip", "Forehand grip"], j: 0},
+                {t: "Pegang bet dalam tenis meja yang menyerupai cara memegang pena disebut...", o: ["Penholder grip", "Shakehand grip", "American grip", "Forehand grip"], j: 0},
                 {t: "Pukulan dengan bagian depan bet menghadap ke arah depan disebut pukulan...", o: ["Forehand", "Backhand", "Smash", "Push"], j: 0},
                 {t: "Teknik pertahanan mendorong bola secara pasif di depan net disebut...", o: ["Push", "Smash", "Drive", "Spin"], j: 0}
             ],
             "Kelas 4": [
                 {t: "Pukulan dengan bagian belakang bet atau posisi tangan menyilang disebut pukulan...", o: ["Backhand", "Forehand", "Lob", "Service"], j: 0},
                 {t: "Angka kemenangan dalam satu game tenis meja standar adalah hingga mencapai...", o: ["11 poin", "21 poin", "15 poin", "25 poin"], j: 0},
-                {t: "Putaran bola dalam tenis meja dikenal dengan istilah...", o: ["Spin (Topspin/Backspin)", "Drive", "Push", "Block"], j: 0}
+                {t: "Putaran bola dalam tenis meja dikenal dengan istilah...", o: ["Spin", "Drive", "Push", "Block"], j: 0}
             ],
             "Kelas 5": [
                 {t: "Pergantian servis dalam permainan tenis meja modern dilakukan setiap perolehan...", o: ["2 poin sekali", "5 poin sekali", "1 poin sekali", "10 poin"], j: 0},
@@ -869,7 +865,7 @@
             ],
             "Kelas 6": [
                 {t: "Teknik serangan kilat ofensif dengan pukulan kencang dalam tenis meja dinamakan...", o: ["Smash / Drive cepat", "Push pelan", "Chop", "Lob"], j: 0},
-                {t: "Jika terjadi skor deus (misalnya 10-10), pemain harus mencari selisih keunggulan sebanyak...", o: ["2 poin", "1 poin", "3 poin", "5 poin"], j: 0},
+                {t: "Jika terjadi skor deus, pemain harus mencari selisih keunggulan sebanyak...", o: ["2 poin", "1 poin", "3 poin", "5 poin"], j: 0},
                 {t: "Kejuaraan dunia tenis meja resmi diatur oleh badan internasional bernama...", o: ["ITTF", "BWF", "FIDE", "FIFA"], j: 0}
             ]
         }
@@ -913,11 +909,9 @@
         soalIndeks = 0;
         skor = 0;
         
-        // Ambil soal spesifik berdasarkan mapel dan kelas aktif, berikan fallback jika belum tersedia
         if (bankSoalDb[mapel] && bankSoalDb[mapel][kelasAktif]) {
             daftarSoalAktif = bankSoalDb[mapel][kelasAktif];
         } else {
-            // Fallback umum jika kategori belum terisi lengkap
             daftarSoalAktif = [
                 {t: `Soal latihan dasar ${mapel} untuk ${kelasAktif}: Apa fokus utama materi ini?`, o: ["Pemahaman teori dan praktik", "Bermain saja", "Mengabaikan tugas", "Tidur"], j: 0},
                 {t: `Dalam mempelajari ${mapel}, sikap yang diperlukan agar sukses adalah...`, o: ["Disiplin dan tekun", "Malas", "Curang", "Ribut"], j: 0},
@@ -959,7 +953,6 @@
     }
 
     function tampilkanHasil() {
-        // Pastikan skor maksimal mendekati 100 jika benar semua
         if (skor > 90) skor = 100;
         document.getElementById('step-kuis').classList.add('hidden');
         document.getElementById('step-hasil').classList.remove('hidden');
