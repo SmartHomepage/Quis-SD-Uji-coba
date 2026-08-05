@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cerdas Ceria (C2A) - MIM Wonoanti EduQuiz </title>
+    <title>MIM Wonoanti EduQuiz</title>
     <style>
         :root {
             --primary: #4f46e5;
@@ -30,7 +30,7 @@
 
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             background: var(--card-bg);
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
@@ -77,9 +77,9 @@
 
         .btn-mapel {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            text-align: left;
-            padding: 20px;
-            font-size: 18px;
+            text-align: center;
+            padding: 16px;
+            font-size: 16px;
         }
 
         .btn-opsi {
@@ -120,6 +120,7 @@
             font-weight: 600;
             margin-bottom: 20px;
             color: #1e293b;
+            line-height: 1.5;
         }
 
         .result-card {
@@ -140,12 +141,15 @@
 <div class="container">
     <!-- MENU PILIH KELAS -->
     <div id="step-kelas">
-        <h1>Cerdas Ceria (C2A)</h1>
+        <h1>MIM Wonoanti EduQuiz</h1>
         <p>Pilih tingkat kelas anak:</p>
-        <div class="grid-menu" style="grid-template-columns: 1fr;">
-            <button onclick="pilihKelas('Kelas 1')" class="btn-mapel" style="text-align:center;">🌟 Kelas 1 SD</button>
-            <button onclick="pilihKelas('Kelas 2')" class="btn-mapel" style="text-align:center;">🚀 Kelas 2 SD</button>
-            <button onclick="pilihKelas('Kelas 3')" class="btn-mapel" style="text-align:center;">🏆 Kelas 3 SD</button>
+        <div class="grid-menu" style="grid-template-columns: 1fr 1fr;">
+            <button onclick="pilihKelas('Kelas 1')" class="btn-mapel">🌟 Kelas 1 SD</button>
+            <button onclick="pilihKelas('Kelas 2')" class="btn-mapel">🚀 Kelas 2 SD</button>
+            <button onclick="pilihKelas('Kelas 3')" class="btn-mapel">🏆 Kelas 3 SD</button>
+            <button onclick="pilihKelas('Kelas 4')" class="btn-mapel">🎯 Kelas 4 SD</button>
+            <button onclick="pilihKelas('Kelas 5')" class="btn-mapel">🔥 Kelas 5 SD</button>
+            <button onclick="pilihKelas('Kelas 6')" class="btn-mapel">🎓 Kelas 6 SD</button>
         </div>
     </div>
 
@@ -153,13 +157,8 @@
     <div id="step-mapel" class="hidden">
         <h2 id="teks-kelas">Pilih Mata Pelajaran</h2>
         <p>Silakan pilih bidang pelajaran yang ingin diuji:</p>
-        <div class="grid-menu">
-            <button onclick="pilihMapel('Matematika')" class="btn-mapel">📐 Matematika</button>
-            <button onclick="pilihMapel('Bahasa Indonesia')" class="btn-mapel">📖 B. Indonesia</button>
-            <button onclick="pilihMapel('IPA')" class="btn-mapel">🌱 IPA</button>
-            <button onclick="pilihMapel('IPS')" class="btn-mapel">🌍 IPS</button>
-            <button onclick="pilihMapel('PPKn')" class="btn-mapel">🇮🇩 PPKn</button>
-            <button onclick="pilihMapel('Bahasa Inggris')" class="btn-mapel">🔤 B. Inggris</button>
+        <div class="grid-menu" id="container-mapel">
+            <!-- Pilihan Mapel akan disesuaikan via JS -->
         </div>
         <button onclick="kembaliKeKelas()" style="margin-top: 20px; background-color: #64748b; width: 100%;">← Kembali Pilih Kelas</button>
     </div>
@@ -168,7 +167,7 @@
     <div id="step-kuis" class="hidden">
         <div class="quiz-header">
             <span id="label-mapel-kelas">Matematika - Kelas 1</span>
-            <span id="label-nomor">Soal 1 dari 15</span>
+            <span id="label-nomor">Soal 1 dari 5</span>
         </div>
         <div class="question-box" id="soal-teks">Pertanyaan akan muncul di sini...</div>
         <div id="opsi-container">
@@ -190,113 +189,264 @@
     let kelasAktif = '';
     let mapelAktif = '';
     let soalIndeks = 0;
-    let skor = 0;
+    let jumlahBenar = 0;
     let daftarSoalAktif = [];
 
-    // Bank Soal Lengkap: Setiap mapel memiliki 15 soal
+    // Mapel berdasarkan Fase/Kelas
+    const daftarMapelPerKelas = {
+        "Kelas 1": ["Matematika", "Bahasa Indonesia", "IPAS", "PPKn", "Bahasa Inggris"],
+        "Kelas 2": ["Matematika", "Bahasa Indonesia", "IPAS", "PPKn", "Bahasa Inggris"],
+        "Kelas 3": ["Matematika", "Bahasa Indonesia", "IPAS", "PPKn", "Bahasa Inggris"],
+        "Kelas 4": ["Matematika", "Bahasa Indonesia", "IPA", "IPS", "PPKn", "Bahasa Inggris"],
+        "Kelas 5": ["Matematika", "Bahasa Indonesia", "IPA", "IPS", "PPKn", "Bahasa Inggris"],
+        "Kelas 6": ["Matematika", "Bahasa Indonesia", "IPA", "IPS", "PPKn", "Bahasa Inggris"]
+    };
+
+    // Bank Soal Terstruktur Lengkap dari Kelas 1 sampai Kelas 6
     const bankSoal = {
-        "Matematika": [
-            {t: "Hasil dari 5 + 3 adalah...", o: ["6", "7", "8", "9"], j: 2},
-            {t: "Berapakah hasil dari 10 - 4?", o: ["5", "6", "7", "8"], j: 1},
-            {t: "Angka sebelum 20 adalah...", o: ["18", "19", "21", "22"], j: 1},
-            {t: "Hasil dari 4 x 2 adalah...", o: ["6", "8", "10", "12"], j: 1},
-            {t: "Berapakah hasil dari 15 : 3?", o: ["3", "4", "5", "6"], j: 2},
-            {t: "Ibu membeli 12 jeruk, diberikan ke adik 5. Sisa jeruk ibu adalah...", o: ["6", "7", "8", "9"], j: 1},
-            {t: "Bentuk bangun datar yang memiliki 3 sisi disebut...", o: ["Persegi", "Segitiga", "Lingkaran", "Persegi Panjang"], j: 1},
-            {t: "Hasil dari 7 + 8 adalah...", o: ["14", "15", "16", "17"], j: 1},
-            {t: "Jam dinding menunjuk angka 12 pendek dan angka 3 panjang, menunjukkan pukul...", o: ["12.00", "03.00", "12.15", "03.12"], j: 1},
-            {t: "Angka 45 dibaca...", o: ["Empat puluh", "Empat lima", "Empat puluh lima", "Lima puluh empat"], j: 2},
-            {t: "Hasil dari 20 - 9 adalah...", o: ["10", "11", "12", "13"], j: 1},
-            {t: "Bilangan kelipatan 5 setelah angka 15 adalah...", o: ["18", "19", "20", "25"], j: 2},
-            {t: "Berapa jumlah sudut pada bangun persegi?", o: ["3", "4", "5", "6"], j: 1},
-            {t: "Hasil dari 6 x 3 adalah...", o: ["12", "16", "18", "21"], j: 2},
-            {t: "Jika kemarin hari Senin, maka besok adalah hari...", o: ["Selasa", "Rabu", "Kamis", "Jumat"], j: 1}
-        ],
-        "Bahasa Indonesia": [
-            {t: "Huruf abjad pertama adalah...", o: ["A", "B", "C", "D"], j: 0},
-            {t: "Hewan yang bunyinya 'meong' adalah...", o: ["Anjing", "Kucing", "Sapi", "Bebek"], j: 1},
-            {t: "Lawan kata dari 'Besar' adalah...", o: ["Tinggi", "Kecil", "Luas", "Panjang"], j: 1},
-            {t: "Alat untuk menulis di buku adalah...", o: ["Penghapus", "Penggaris", "Pensil", "Gunting"], j: 2},
-            {t: "Bunga nasional Indonesia disimbolkan dengan sebutan Puspa Bangsa yaitu...", o: ["Melati", "Mawar", "Anggrek", "Tulip"], j: 0},
-            {t: "Anak ayam disebut juga dengan...", o: ["Cencen", "Kikik", "Pipit", "Krik"], j: 0},
-            {t: "Bagian tubuh yang digunakan untuk mendengar adalah...", o: ["Mata", "Hidung", "Telinga", "Tangan"], j: 2},
-            {t: "Sinonim (persamaan kata) dari 'pintar' adalah...", o: ["Malas", "Bodoh", "Cerdas", "Nakal"], j: 2},
-            {t: "Keluarga yang terdiri dari ayah, ibu, dan anak disebut keluarga...", o: ["Besar", "Inti", "Luar", "Kerabat"], j: 1},
-            {t: "Warna bendera Negara Indonesia adalah...", o: ["Merah Putih", "Biru Putih", "Merah Hitam", "Putih Hijau"], j: 0},
-            {t: "Hewan yang hidup di air dan bernapas dengan insang adalah...", o: ["Burung", "Kucing", "Ikan", "Kelinci"], j: 2},
-            {t: "Matahari terbit pada waktu...", o: ["Pagi hari", "Malam hari", "Sore hari", "Tengah malam"], j: 0},
-            {t: "Kata tanya untuk menanyakan tempat adalah...", o: ["Siapa", "Mengapa", "Dimana", "Berapa"], j: 2},
-            {t: "Buah apel rasanya umumnya adalah...", o: ["Asin", "Pahit", "Manis", "Asam sekali"], j: 2},
-            {t: "Sebelum makan kita dianjurkan untuk...", o: ["Tidur", "Mandi", "Mencuci tangan", "Berlari"], j: 2}
-        ],
-        "IPA": [
-            {t: "Sumber energi utama bagi bumi adalah...", o: ["Bulan", "Matahari", "Bintang", "Lampu"], j: 1},
-            {t: "Tumbuhan hijau membuat makanannya sendiri melalui proses...", o: ["Fotosintesis", "Respirasi", "Erosi", "Transpirasi"], j: 0},
-            {t: "Hewan yang memakan daging disebut...", o: ["Herbivora", "Karnivora", "Omnivora", "Insektivora"], j: 1},
-            {t: "Bagian tumbuhan yang berfungsi menyerap air dari dalam tanah adalah...", o: ["Daun", "Batang", "Akar", "Bunga"], j: 2},
-            {t: "Wujud air jika dimasukkan ke dalam freezer (pendingin) akan menjadi...", o: ["Gas", "Uap", "Es (Padat)", "Cair"], j: 2},
-            {t: "Alat indra yang digunakan untuk mengecap rasa adalah...", o: ["Lidah", "Kulit", "Hidung", "Mata"], j: 0},
-            {t: "Benda yang ditarik magnet biasanya terbuat dari...", o: ["Plastik", "Kayu", "Besi/Logam", "Kertas"], j: 2},
-            {t: "Kupu-kupu berkembang biak dengan cara...", o: ["Melahirkan", "Bertelur", "Membelah diri", "Tunas"], j: 1},
-            {t: "Contoh sumber daya alam yang dapat diperbaharui adalah...", o: ["Minyak bumi", "Batubara", "Tumbuhan", "Batu kapur"], j: 2},
-            {t: "Perubahan wujud dari cair menjadi gas disebut...", o: ["Mencair", "Menguap", "Membeku", "Mengembun"], j: 1},
-            {t: "Hewan kambing merupakan pemakan tumbuhan, disebut...", o: ["Karnivora", "Herbivora", "Omnivora", "Kusumivora"], j: 1},
-            {t: "Organ pernapasan pada manusia adalah...", o: ["Paru-paru", "Jantung", "Hati", "Lambung"], j: 0},
-            {t: "Bulan yang bersinar di malam hari sebenarnya memantulkan cahaya dari...", o: ["Bintang", "Matahari", "Bumi", "Awan"], j: 1},
-            {t: "Contoh hewan yang mengalami metamorfosis sempurna adalah...", o: ["Kucing", "Katak", "Ayam", "Kambing"], j: 1},
-            {t: "Gaya tarik bumi terhadap segala benda disebut gaya...", o: ["Pegas", "Gesek", "Gravitasi", "Magnet"], j: 2}
-        ],
-        "IPS": [
-            {t: "Ibu kota negara Indonesia adalah...", o: ["Surabaya", "Bandung", "Jakarta", "Medan"], j: 2},
-            {t: "Alat tukar resmi yang sah dalam perekonomian Indonesia adalah...", o: ["Dollar", "Rupiah", "Ringgit", "Yen"], j: 1},
-            {t: "Suku asli yang terkenal di Pulau Papua adalah...", o: ["Suku Jawa", "Suku Asmat", "Suku Batak", "Suku Madura"], j: 1},
-            {t: "Tempat pemberhentian kereta api dinamakan...", o: ["Halte", "Pelabuhan", "Stasiun", "Bandara"], j: 2},
-            {t: "Lambang negara Indonesia adalah...", o: ["Garuda Pancasila", "Bendera Merah Putih", "Bintang", "Pohon Beringin"], j: 0},
-            {t: "Petani adalah pekerjaan yang menghasilkan...", o: ["Jasa", "Pakaian", "Barang/Pangan", "Kendaraan"], j: 2},
-            {t: "Pulau terbesar di wilayah Indonesia adalah...", o: ["Jawa", "Sumatera", "Kalimantan", "Bali"], j: 2},
-            {t: "Semboyan negara Indonesia adalah...", o: ["Tut Wuri Handayani", "Bhinneka Tunggal Ika", "Gemah Ripah", "Merdeka Jaya"], j: 1},
-            {t: "Uang kertas pecahan berwarna merah bernilai...", o: ["Rp10.000", "Rp20.000", "Rp50.000", "Rp100.000"], j: 3},
-            {t: "Laut yang sangat luas dinamakan...", o: ["Danau", "Selat", "Samudra", "Sungai"], j: 2},
-            {t: "Pakaian adat tradisional dari suku Jawa dinamakan...", o: ["Ulos", "Batik/Kebaya", "Baju Bodo", "Peningset"], j: 1},
-            {t: "Kepala desa biasanya memimpin suatu wilayah tingkat...", o: ["Kecamatan", "Desa / Kelurahan", "Kabupaten", "Provinsi"], j: 1},
-            {t: "Alat transportasi udara resmi adalah...", o: ["Kapal laut", "Kereta", "Pesawat terbang", "Bus"], j: 2},
-            {t: "Hari Kemerdekaan Republik Indonesia diperingati setiap tanggal...", o: ["1 Januari", "17 Agustus", "28 Oktober", "10 November"], j: 1},
-            {t: "Provinsi Bali terkenal sebagai pusat pariwisata berjuluk Pulau...", o: ["Dewata", "Seribu Candi", "Pijar", "Emas"], j: 0}
-        ],
-        "PPKn": [
-            {t: "Dasar negara Indonesia adalah...", o: ["UUD 1945", "Pancasila", "Bhineka Tunggal Ika", "Garuda"], j: 1},
-            {t: "Sila pertama Pancasila berbunyi Ketuhanan yang...", o: ["Maha Esa", "Adil dan Beradab", "Persatuan Indonesia", "Rakyat"], j: 0},
-            {t: "Simbol sila ke-3 Pancasila adalah...", o: ["Bintang", "Rantai", "Pohon Beringin", "Kepala Banteng"], j: 2},
-            {t: "Gotong royong mencerminkan pengamalan Pancasila sila ke...", o: ["1", "2", "3", "5"], j: 2},
-            {t: "Warna dasar pada perisai tengah burung Garuda adalah...", o: ["Merah dan Putih", "Hitam dan Putih", "Kuning dan Hijau", "Biru dan Kuning"], j: 0},
-            {t: "Aturan yang berlaku di masyarakat harus kita...", o: ["Langgar", "Abaikan", "Patuhi", "Biarkan"], j: 2},
-            {t: "Sikap yang baik ketika teman sedang berbeda pendapat adalah...", o: ["Mengejek", "Menghargai", "Memarahi", "Menjauhi"], j: 1},
-            {t: "Musyawarah mufakat dilakukan untuk mencapai...", o: ["Keputusan bersama", "Perpecahan", "Kemenangan sepihak", "Pertengkaran"], j: 0},
-            {t: "Bunyi sila ke-2 Pancasila adalah Kemanusiaan yang...", o: ["Adil dan Beradab", "Maha Esa", "Persatuan Indonesia", "Sosial"], j: 0},
-            {t: "Hak anak di rumah salah satunya adalah mendapatkan...", o: ["Kewajiban", "Hukuman", "Kasih sayang", "Beban kerja"], j: 2},
-            {t: "Contoh kewajiban anak di sekolah adalah...", o: ["Mendapat nilai bagus", "Memakai seragam lengkap", "Meminta hadiah", "Bermain bebas"], j: 1},
-            {t: "Ketua RT dipilih oleh...", o: ["Warga sekitar", "Gubernur", "Presiden", "Camat"], j: 0},
-            {t: "Bendera merah putih harus kita hormati sebagai...", o: ["Simbol negara", "Kain biasa", "Hiasan rumah", "Mainan"], j: 0},
-            {t: "Sikap saling tolong menolong antar sesama manusia disebut...", o: ["Egois", "Dermawan/Solidaritas", "Sombong", "Acuh"], j: 1},
-            {t: "Pancasila terdiri dari berapa sila?", o: ["3", "4", "5", "6"], j: 2}
-        ],
-        "Bahasa Inggris": [
-            {t: "Bahasa Inggris dari kata 'Merah' adalah...", o: ["Blue", "Red", "Green", "Yellow"], j: 1},
-            {t: "Bahasa Inggris dari angka 'Sepuluh' adalah...", o: ["Seven", "Eight", "Nine", "Ten"], j: 3},
-            {t: "Artinya kata 'Cat' dalam bahasa Indonesia adalah...", o: ["Anjing", "Kucing", "Kelinci", "Burung"], j: 1},
-            {t: "Ucapan selamat pagi dalam bahasa Inggris adalah...", o: ["Good afternoon", "Good evening", "Good morning", "Good night"], j: 2},
-            {t: "Bahasa Inggris dari 'Buku' adalah...", o: ["Pen", "Pencil", "Book", "Table"], j: 2},
-            {t: "Buah apel dalam bahasa Inggris disebut...", o: ["Apple", "Banana", "Orange", "Grape"], j: 0},
-            {t: "Warna kuning dalam bahasa Inggris adalah...", o: ["Yellow", "Red", "Blue", "Black"], j: 0},
-            {t: "Bahasa Inggris dari 'Sekolah' adalah...", o: ["House", "School", "Market", "Hospital"], j: 1},
-            {t: "Berapa bahasa Inggris dari angka 5?", o: ["Four", "Five", "Six", "Seven"], j: 1},
-            {t: "Anggota keluarga 'Mother' artinya adalah...", o: ["Ayah", "Ibu", "Kakak", "Adik"], j: 1},
-            {t: "Bahasa Inggris dari 'Air' adalah...", o: ["Water", "Milk", "Tea", "Coffee"], j: 0},
-            {t: "Bagian tubuh 'Head' artinya adalah...", o: ["Kaki", "Tangan", "Kepala", "Mata"], j: 2},
-            {t: "Hewan 'Elephant' artinya adalah...", o: ["Kuda", "Gajah", "Singa", "Harimau"], j: 1},
-            {t: "Ucapan terima kasih dalam bahasa Inggris...", o: ["Thank you", "Sorry", "Hello", "Good bye"], j: 0},
-            {t: "Bahasa Inggris dari 'Satu' adalah...", o: ["One", "Two", "Three", "Four"], j: 0}
-        ]
+        "Kelas 1": {
+            "Matematika": [
+                {t: "Hasil dari 4 + 3 adalah...", o: ["6", "7", "8", "9"], j: 1},
+                {t: "Berapakah hasil dari 10 - 4?", o: ["5", "6", "7", "8"], j: 1},
+                {t: "Lambang bilangan 'Delapan' adalah...", o: ["6", "7", "8", "9"], j: 2},
+                {t: "Bentuk roda sepeda adalah...", o: ["Segitiga", "Persegi", "Lingkaran", "Kotak"], j: 2},
+                {t: "Urutan angka setelah 14 adalah...", o: ["13", "15", "16", "17"], j: 1}
+            ],
+            "Bahasa Indonesia": [
+                {t: "Huruf pertama dari kata 'Kucing' adalah...", o: ["K", "U", "C", "G"], j: 0},
+                {t: "Hewan yang dapat terbang di udara adalah...", o: ["Ikan", "Burung", "Kucing", "Kambing"], j: 1},
+                {t: "Lawan kata dari 'Besar' adalah...", o: ["Panjang", "Kecil", "Tinggi", "Luas"], j: 1},
+                {t: "Alat yang digunakan untuk menulis adalah...", o: ["Penghapus", "Pensil", "Penggaris", "Gunting"], j: 1},
+                {t: "Mata kita gunakan untuk...", o: ["Mendengar", "Melihat", "Mencium", "Merasa"], j: 1}
+            ],
+            "IPAS": [
+                {t: "Bagian tubuh yang digunakan untuk mendengar suara adalah...", o: ["Mata", "Telinga", "Hidung", "Mulut"], j: 1},
+                {t: "Ikan bernapas dan hidup di...", o: ["Darat", "Pohon", "Air", "Udara"], j: 2},
+                {t: "Benda yang terasa panas di siang hari berasal dari sinar...", o: ["Bulan", "Lampu", "Matahari", "Lilin"], j: 2},
+                {t: "Kebersihan gigi dirawat dengan cara...", o: ["Mencuci tangan", "Menggosok gigi", "Keramas", "Mandi"], j: 1},
+                {t: "Ayam berkembang biak dengan cara...", o: ["Melahirkan", "Bertelur", "Beranak", "Membelah diri"], j: 1}
+            ],
+            "PPKn": [
+                {t: "Simbol Sila Pertama Pancasila adalah...", o: ["Bintang", "Rantai", "Pohon Beringin", "Kepala Banteng"], j: 0},
+                {t: "Warna bendera negara Indonesia adalah...", o: ["Merah Kuning", "Merah Putih", "Putih Biru", "Hijau Putih"], j: 1},
+                {t: "Sebelum makan kita harus mengucapkan...", o: ["Salam", "Doa", "Maaf", "Terima kasih"], j: 1},
+                {t: "Dasar negara Indonesia adalah...", o: ["UUD 1945", "Pancasila", "Garuda", "Bendera"], j: 1},
+                {t: "Sikap saling membantu antar sesama teman adalah perbuatan...", o: ["Buruk", "Terpuji", "Rugi", "Nakal"], j: 1}
+            ],
+            "Bahasa Inggris": [
+                {t: "Bahasa Inggris dari warna 'Merah' adalah...", o: ["Blue", "Red", "Green", "Yellow"], j: 1},
+                {t: "Arti kata 'Cat' adalah...", o: ["Anjing", "Kucing", "Burung", "Ikan"], j: 1},
+                {t: "Bahasa Inggris angka 'Satu' adalah...", o: ["One", "Two", "Three", "Four"], j: 0},
+                {t: "Bahasa Inggris dari 'Buku' adalah...", o: ["Pen", "Pencil", "Book", "Eraser"], j: 2},
+                {t: "Ucapan 'Good Morning' artinya selamat...", o: ["Pagi", "Siang", "Sore", "Malam"], j: 0}
+            ]
+        },
+        "Kelas 2": {
+            "Matematika": [
+                {t: "Hasil perkalian 3 x 4 adalah...", o: ["7", "10", "12", "15"], j: 2},
+                {t: "Hasil dari 45 + 23 adalah...", o: ["68", "67", "58", "78"], j: 0},
+                {t: "Jam dinding menunjuk angka 3 pendek dan angka 12 panjang, dibaca pukul...", o: ["03.00", "12.03", "03.12", "12.00"], j: 0},
+                {t: "Bangun datar yang memiliki 3 buah sisi adalah...", o: ["Persegi", "Segitiga", "Lingkaran", "Trapesium"], j: 1},
+                {t: "Nilai tempat angka 5 pada bilangan 352 adalah...", o: ["Ratusan", "Puluhan", "Satuan", "Ribuan"], j: 1}
+            ],
+            "Bahasa Indonesia": [
+                {t: "Lawan kata dari 'Rajin' adalah...", o: ["Pintar", "Pandai", "Malas", "Giat"], j: 2},
+                {t: "Kalimat perintah biasanya diakhiri tanda...", o: ["Tanya (?)", "Seru (!)", "Titik (.)", "Koma (,)"], j: 1},
+                {t: "Sinonim (persamaan kata) dari 'Pandai' adalah...", o: ["Cerdas", "Bodoh", "Malas", "Nakal"], j: 0},
+                {t: "Ibu membeli buah di...", o: ["Stasiun", "Pasar", "Sekolah", "Rumah Sakit"], j: 1},
+                {t: "Kata untuk menanyakan nama seseorang adalah...", o: ["Dimana", "Siapa", "Kapan", "Berapa"], j: 1}
+            ],
+            "IPAS": [
+                {t: "Tumbuhan memanfaatkan sinar matahari untuk...", o: ["Mandi", "Membuat makanan", "Tidur", "Bernapas"], j: 1},
+                {t: "Tempat hidup hewan seperti ikan dan udang berada di...", o: ["Darat", "Air", "Udara", "Pohon"], j: 1},
+                {t: "Wujud benda es batu jika dipanaskan akan...", o: ["Membeku", "Mencair", "Menguap", "Padat"], j: 1},
+                {t: "Perubahan bayangan terjadi karena arah cahaya...", o: ["Bulan", "Matahari", "Lampu", "Lilin"], j: 1},
+                {t: "Ulat akan berubah bentuk menjadi...", o: ["Semut", "Kupu-kupu", "Lalat", "Nyamuk"], j: 1}
+            ],
+            "PPKn": [
+                {t: "Sila kedua Pancasila disimbolkan dengan...", o: ["Bintang", "Rantai", "Pohon Beringin", "Kepala Banteng"], j: 1},
+                {t: "Bhinneka Tunggal Ika artinya berbeda-beda tetapi tetap...", o: ["Satu", "Beda", "Sama", "Sendiri"], j: 0},
+                {t: "Kewajiban seorang siswa di sekolah adalah...", o: ["Bermain", "Belajar", "Mendapat nilai", "Istirahat"], j: 1},
+                {t: "Menjaga kebersihan kelas dilakukan bersama dengan cara...", o: ["Piket kelas", "Musyawarah", "Olahraga", "Ujian"], j: 0},
+                {t: "Lambang negara Indonesia adalah burung...", o: ["Elang", "Garuda", "Merpati", "Rajawali"], j: 1}
+            ],
+            "Bahasa Inggris": [
+                {t: "Bahasa Inggris dari angka 10 adalah...", o: ["Eight", "Nine", "Ten", "Seven"], j: 2},
+                {t: "Arti kata 'Dog' adalah...", o: ["Kucing", "Anjing", "Kelinci", "Gajah"], j: 1},
+                {t: "'Thank you' mempunyai arti...", o: ["Maaf", "Sama-sama", "Terima kasih", "Halo"], j: 2},
+                {t: "Bahasa Inggris dari kata 'Ibu' adalah...", o: ["Father", "Mother", "Brother", "Sister"], j: 1},
+                {t: "Warna 'Yellow' dalam Bahasa Indonesia berarti...", o: ["Biru", "Kuning", "Hijau", "Merah"], j: 1}
+            ]
+        },
+        "Kelas 3": {
+            "Matematika": [
+                {t: "Hasil dari 125 + 243 adalah...", o: ["368", "358", "378", "268"], j: 0},
+                {t: "Hasil perkalian 8 x 7 adalah...", o: ["54", "56", "64", "48"], j: 1},
+                {t: "Pecahan 1/2 dibaca...", o: ["Satu per tiga", "Satu per dua", "Satu per empat", "Dua per satu"], j: 1},
+                {t: "Hasil dari 36 : 4 adalah...", o: ["8", "9", "7", "6"], j: 1},
+                {t: "Keliling persegi yang memiliki panjang sisi 5 cm adalah...", o: ["10 cm", "15 cm", "20 cm", "25 cm"], j: 2}
+            ],
+            "Bahasa Indonesia": [
+                {t: "Kata sapaan digunakan untuk...", o: ["Menegur atau menyapa", "Marah", "Menulis cerita", "Membaca"], j: 0},
+                {t: "Tanda baca di akhir kalimat tanya adalah...", o: ["!", ".", "?", ","], j: 2},
+                {t: "Gagasan utama dalam sebuah paragraf disebut...", o: ["Ide pokok", "Judul", "Tema", "Ringkasan"], j: 0},
+                {t: "Orang yang tugasnya mengemudikan pesawat terbang adalah...", o: ["Nahkoda", "Sopir", "Pilot", "Masinis"], j: 2},
+                {t: "Dongeng tentang kisah hewan yang berperilaku seperti manusia disebut...", o: ["Mite", "Fabel", "Legenda", "Sage"], j: 1}
+            ],
+            "IPAS": [
+                {t: "Makhluk hidup berkembang biak bertujuan untuk...", o: ["Mempertahankan keturunan", "Cepat mati", "Menjadi besar", "Mencari makan"], j: 0},
+                {t: "Benda padat yang berubah menjadi cair disebut proses...", o: ["Mencair", "Membeku", "Menguap", "Menghablur"], j: 0},
+                {t: "Proses pembuatan makanan oleh tumbuhan hijau disebut...", o: ["Fotosintesis", "Respirasi", "Adaptasi", "Erosi"], j: 0},
+                {t: "Berikut ini hewan yang mengalami metamorfosis sempurna adalah...", o: ["Kupu-kupu", "Kecoa", "Jangkrik", "Belalang"], j: 0},
+                {t: "Energi terbesar bagi kehidupan di bumi adalah...", o: ["Listrik", "Matahari", "Angin", "Minyak Bumi"], j: 1}
+            ],
+            "PPKn": [
+                {t: "Sila ke-3 Pancasila berbunyi...", o: ["Ketuhanan yang Maha Esa", "Persatuan Indonesia", "Keadilan sosial", "Kemanusiaan yang adil"], j: 1},
+                {t: "Semboyan negara Indonesia terdapat pada kaki Garuda Pancasila yaitu...", o: ["Tut Wuri Handayani", "Bhinneka Tunggal Ika", "Pancasila Sakti", "UUD 1945"], j: 1},
+                {t: "Mencapai keputusan bersama secara musyawarah merupakan sila ke-...", o: ["2", "3", "4", "5"], j: 2},
+                {t: "Mendapatkan kasih sayang dari orang tua adalah contoh...", o: ["Kewajiban anak", "Hak anak", "Tugas anak", "Aturan rumah"], j: 1},
+                {t: "Simbol sila ke-4 Pancasila adalah...", o: ["Pohon Beringin", "Kepala Banteng", "Padi dan Kapas", "Bintang"], j: 1}
+            ],
+            "Bahasa Inggris": [
+                {t: "What is the English word for 'Sekolah'?", o: ["Market", "Hospital", "School", "Library"], j: 2},
+                {t: "The color of the sky on a clear day is...", o: ["Green", "Blue", "Red", "Black"], j: 1},
+                {t: "The day after Monday is...", o: ["Sunday", "Tuesday", "Wednesday", "Friday"], j: 1},
+                {t: "'Father' in Indonesian means...", o: ["Ibu", "Ayah", "Kakek", "Paman"], j: 1},
+                {t: "How many legs does a cow have?", o: ["Two", "Three", "Four", "Five"], j: 2}
+            ]
+        },
+        "Kelas 4": {
+            "Matematika": [
+                {t: "Hasil dari 25 x 12 adalah...", o: ["250", "300", "350", "280"], j: 1},
+                {t: "FPB dari bilangan 12 dan 18 adalah...", o: ["2", "3", "6", "12"], j: 2},
+                {t: "KPK dari bilangan 4 dan 6 adalah...", o: ["8", "12", "16", "24"], j: 1},
+                {t: "Pecahan senilai dari 2/4 adalah...", o: ["1/2", "3/4", "2/3", "1/3"], j: 0},
+                {t: "Luas persegi dengan panjang sisi 8 cm adalah...", o: ["16 cm²", "32 cm²", "64 cm²", "72 cm²"], j: 2}
+            ],
+            "Bahasa Indonesia": [
+                {t: "Ide utama atau inti permasalahan dalam paragraf dinamakan...", o: ["Gagasan pokok", "Gagasan pendukung", "Kalimat penjelas", "Judul"], j: 0},
+                {t: "Wawancara bertujuan untuk memperoleh...", o: ["Uang", "Informasi", "Hadiah", "Kawan"], j: 1},
+                {t: "Orang yang memberikan informasi dalam wawancara disebut...", o: ["Pewawancara", "Narasumber", "Wartawan", "Reporter"], j: 1},
+                {t: "Penggunaan huruf kapital yang benar pada nama kota adalah...", o: ["jakarta", "Jakarta", "jaKarta", "JAKARTA"], j: 1},
+                {t: "Puisi lama yang setiap baitnya terdiri atas 4 baris berima a-b-a-b dinamakan...", o: ["Gurindam", "Pantun", "Syair", "Novel"], j: 1}
+            ],
+            "IPA": [
+                {t: "Gaya yang bekerja saat kita menarik ketapel adalah gaya...", o: ["Gesek", "Pegas", "Gravitasi", "Magnet"], j: 1},
+                {t: "Hewan pemakan daging dan tumbuhan (segala) disebut...", o: ["Herbivora", "Karnivora", "Omnivora", "Insektivora"], j: 2},
+                {t: "Bunyi dapat merambat paling cepat melalui medium benda...", o: ["Padat", "Cair", "Gas", "Hampa udara"], j: 0},
+                {t: "Bagian tumbuhan yang berfungsi menyerap air dan hara dalam tanah adalah...", o: ["Daun", "Batang", "Akar", "Bunga"], j: 2},
+                {t: "Perubahan energi pada setrika listrik adalah energi listrik menjadi...", o: ["Cahaya", "Panas", "Gerak", "Bunyi"], j: 1}
+            ],
+            "IPS": [
+                {t: "Indonesia dikenal sebagai negara maritim karena wilayahnya sebagian besar berupa...", o: ["Lautan", "Daratan", "Hutan", "Pegunungan"], j: 0},
+                {t: "Candi Borobudur merupakan peninggalan bersejarah beragama...", o: ["Hindu", "Buddha", "Islam", "Konghucu"], j: 1},
+                {t: "Suku Asmat merupakan suku bangsa yang berasal dari provinsi...", o: ["Aceh", "Jawa Timur", "Papua", "Bali"], j: 2},
+                {t: "Sumber daya alam yang tidak dapat diperbaharui contohnya...", o: ["Tumbuhan", "Hewan", "Minyak Bumi", "Air"], j: 2},
+                {t: "Kegiatan menghasilkan barang atau jasa disebut kegiatan...", o: ["Konsumsi", "Produksi", "Distribusi", "Tukar-menukar"], j: 1}
+            ],
+            "PPKn": [
+                {t: "Pemberian hak dan kewajiban secara seimbang sesuai dengan sila ke-...", o: ["2", "3", "4", "5"], j: 3},
+                {t: "Keberagaman suku dan budaya di Indonesia harus disikapi dengan cara...", o: ["Menghargai", "Memusuhi", "Abaikan", "Membandingkan"], j: 0},
+                {t: "Sila ke-5 Pancasila disimbolkan dengan...", o: ["Kepala Banteng", "Pohon Beringin", "Padi dan Kapas", "Rantai"], j: 2},
+                {t: "Wilayah administratif yang dipimpin oleh seorang Camat adalah...", o: ["Desa", "Kecamatan", "Kabupaten", "Provinsi"], j: 1},
+                {t: "Bentuk kerja sama tradisional warga desa untuk kepentingan bersama dinamakan...", o: ["Gotong Royong", "Ujian", "Kerja Individu", "Kompetisi"], j: 0}
+            ],
+            "Bahasa Inggris": [
+                {t: "An animal that has a long trunk and big ears is an...", o: ["Elephant", "Giraffe", "Tiger", "Lion"], j: 0},
+                {t: "We go to the library to...", o: ["Buy food", "Read books", "Swim", "Play football"], j: 1},
+                {t: "The opposite of 'Big' is...", o: ["Tall", "Small", "Short", "Long"], j: 1},
+                {t: "Twenty-five minus ten is...", o: ["Ten", "Fifteen", "Twenty", "Five"], j: 1},
+                {t: "What is 'Hospital' in Indonesian?", o: ["Pasar", "Sekolah", "Rumah Sakit", "Stasiun"], j: 2}
+            ]
+        },
+        "Kelas 5": {
+            "Matematika": [
+                {t: "Hasil dari 3/4 + 1/2 adalah...", o: ["4/6", "5/4", "1/2", "2/4"], j: 1},
+                {t: "Hasil perkalian pecahan 2/3 x 3/5 adalah...", o: ["6/15", "5/8", "6/8", "1/5"], j: 0},
+                {t: "Volume kubus yang memiliki panjang rusuk 5 cm adalah...", o: ["25 cm³", "100 cm³", "125 cm³", "150 cm³"], j: 2},
+                {t: "Sebuah bus melaju 60 km/jam selama 2 jam. Jarak yang ditempuh adalah...", o: ["30 km", "120 km", "180 km", "240 km"], j: 1},
+                {t: "Bentuk desimal dari pecahan 1/4 adalah...", o: ["0,2", "0,25", "0,5", "0,75"], j: 1}
+            ],
+            "Bahasa Indonesia": [
+                {t: "Teks yang berisi fakta dan informasi ilmiah dinamakan teks...", o: ["Fiksi", "Exposisi/Nonfiksi", "Dongeng", "Mitos"], j: 1},
+                {t: "Unsur intrik cerita berupa waktu dan tempat terjadinya peristiwa disebut...", o: ["Latar/Setting", "Alur", "Amanat", "Tokoh"], j: 0},
+                {t: "Pesan moral yang ingin disampaikan pengarang dalam cerita dinamakan...", o: ["Tema", "Amanat", "Plot", "Watak"], j: 1},
+                {t: "Sinonim dari kata 'Efektif' adalah...", o: ["Tepat guna", "Boros", "Lambat", "Sia-sia"], j: 0},
+                {t: "Singkatan nama gabungan huruf awal dari beberapa kata yang diucapkan sebagai kata dinamakan...", o: ["Akronim", "Anonim", "Sinonim", "Antonim"], j: 0}
+            ],
+            "IPA": [
+                {t: "Organ pernapasan utama pada manusia adalah...", o: ["Jantung", "Paru-paru", "Hati", "Lambung"], j: 1},
+                {t: "Alat peredaran darah yang berfungsi memompa darah ke seluruh tubuh adalah...", o: ["Paru-paru", "Jantung", "Ginjal", "Hati"], j: 1},
+                {t: "Proses penguapan air laut/bumi menuju atmosfer dinamakan...", o: ["Evaporasi", "Kondensasi", "Presipitasi", "Infiltrasi"], j: 0},
+                {t: "Hubungan saling menguntungkan antara dua makhluk hidup dinamakan simbiose...", o: ["Parasitisme", "Komensalisme", "Mutualisme", "Amensalisme"], j: 2},
+                {t: "Benda yang tidak dapat menghantarkan panas dengan baik disebut...", o: ["Konduktor", "Isolator", "Radiator", "Reflektor"], j: 1}
+            ],
+            "IPS": [
+                {t: "Tokoh yang membacakan Teks Proklamasi Kemerdekaan Indonesia adalah...", o: ["Moh. Hatta", "Ir. Soekarno", "Sutan Sjahrir", "Ki Hajar Dewantara"], j: 1},
+                {t: "Negara tetangga yang berbatasan darat langsung dengan Indonesia di Pulau Kalimantan adalah...", o: ["Singapura", "Malaysia", "Filipina", "Thailand"], j: 1},
+                {t: "Peristiwa pengetikan Teks Proklamasi dilakukan oleh...", o: ["Sayuti Melik", "Sukarni", "B.M. Diah", "Ahmad Soebardjo"], j: 0},
+                {t: "Organisasi ASEAN didirikan pada tanggal 8 Agustus 1967 di kota...", o: ["Jakarta", "Bangkok", "Manila", "Kuala Lumpur"], j: 1},
+                {t: "Kerajaan Islam pertama di Pulau Jawa adalah...", o: ["Samudera Pasai", "Demak", "Mataram Islam", "Banten"], j: 1}
+            ],
+            "PPKn": [
+                {t: "Pancasila disahkan sebagai dasar negara Indonesia pada tanggal...", o: ["17 Agustus 1945", "18 Agustus 1945", "1 Juni 1945", "28 Oktober 1928"], j: 1},
+                {t: "Sikap cinta terhadap tanah air dan bangsa dinamakan...", o: ["Nasionalisme", "Egoisme", "Individualisme", "Etnosentrisme"], j: 0},
+                {t: "Hak Asasi Manusia dimiliki oleh seseorang sejak...", o: ["Lahir", "Dewasa", "Sekolah", "Bekerja"], j: 0},
+                {t: "Menjaga keutuhan NKRI merupakan kewajiban dari...", o: ["TNI saja", "Polri saja", "Presiden saja", "Seluruh rakyat Indonesia"], j: 3},
+                {t: "Sumpah Pemuda dicetuskan pada tanggal...", o: ["28 Oktober 1928", "17 Agustus 1945", "20 Mei 1908", "10 November 1945"], j: 0}
+            ],
+            "Bahasa Inggris": [
+                {t: "My father's brother is my...", o: ["Aunt", "Uncle", "Cousin", "Nephew"], j: 1},
+                {t: "The chef works in the...", o: ["Hospital", "School", "Kitchen / Restaurant", "Post office"], j: 2},
+                {t: "A year has ... months.", o: ["Ten", "Eleven", "Twelve", "Thirteen"], j: 2},
+                {t: "We use our ... to listen to music.", o: ["Eyes", "Ears", "Nose", "Mouth"], j: 1},
+                {t: "What is 'Penyakit' in English?", o: ["Healthy", "Disease / Sickness", "Doctor", "Medicine"], j: 1}
+            ]
+        },
+        "Kelas 6": {
+            "Matematika": [
+                {t: "Hasil dari -12 + 15 - (-5) adalah...", o: ["8", "18", "-2", "22"], j: 1},
+                {t: "Luas lingkaran yang memiliki jari-jari 7 cm adalah... (π = 22/7)", o: ["154 cm²", "44 cm²", "308 cm²", "616 cm²"], j: 0},
+                {t: "Hasil dari 2,5 x 0,4 adalah...", o: ["1,0", "0,1", "10,0", "0,25"], j: 0},
+                {t: "Sebuah tabung memiliki jari-jari 10 cm dan tinggi 20 cm. Volume tabung tersebut adalah... (π = 3,14)", o: ["6280 cm³", "3140 cm³", "1570 cm³", "628 cm³"], j: 0},
+                {t: "Rata-rata dari nilai 7, 8, 6, 9, 10 adalah...", o: ["7", "8", "8,5", "9"], j: 1}
+            ],
+            "Bahasa Indonesia": [
+                {t: "Teks yang berisi penjelasan tentang proses terjadinya suatu fenomena alam/sosial disebut...", o: ["Eksplanasi", "Narasi", "Deskripsi", "Persuasi"], j: 0},
+                {t: "Kalimat yang sesuai dengan kaidah tata bahasa resmi dinamakan kalimat...", o: ["Efektif", "Baku", "Langsung", "Utama"], j: 1},
+                {t: "Formulir yang diisi saat mendaftar menjadi anggota perpustakaan berisi data...", o: ["Pribadi", "Nilai siswa", "Keuangan", "Belanja"], j: 0},
+                {t: "Ungkapan 'Gulung tikar' mempunyai arti...", o: ["Merapikan tempat tidur", "Bangkrut", "Sukses", "Pindah rumah"], j: 1},
+                {t: "Pernyataan umum, deretan penjelas, dan penutup merupakan struktur dari teks...", o: ["Eksplanasi", "Laporan", "Cerpen", "Drama"], j: 0}
+            ],
+            "IPA": [
+                {t: "Perkembangbiakan tumbuhan secara generatif melibatkan pertemuan antara...", o: ["Akar dan batang", "Serbuk sari dan kepala putik", "Daun dan tunas", "Bunga dan buah"], j: 1},
+                {t: "Tumbuhan enceng gondok beradaptasi dengan cara memiliki batang...", o: ["Berongga", "Berduri", "Tebal", "Keras"], j: 0},
+                {t: "Rangkaian listrik yang disusun secara sejajar/bercabang disebut rangkaian...", o: ["Seri", "Paralel", "Campuran", "Terbuka"], j: 1},
+                {t: "Planet terdekat dari matahari dalam sistem tata surya kita adalah...", o: ["Venus", "Bumi", "Merkurius", "Mars"], j: 2},
+                {t: "Gerhana matahari terjadi saat posisi ... berada di antara Matahari dan Bumi.", o: ["Bintang", "Bulan", "Mars", "Awan"], j: 1}
+            ],
+            "IPS": [
+                {t: "Tokoh pencetus gagasan Politik Bebas Aktif Indonesia adalah...", o: ["Ir. Soekarno", "Moh. Hatta", "Sutan Sjahrir", "General Soedirman"], j: 1},
+                {t: "Konferensi Asia Afrika (KAA) pertama kali diselenggarakan di kota...", o: ["Jakarta", "Bandung", "Bogor", "Surakarta"], j: 1},
+                {t: "Pusat sekretariat ASEAN terletak di kota...", o: ["Kuala Lumpur", "Bangkok", "Jakarta", "Manila"], j: 2},
+                {t: "Modernisasi membawa dampak positif dibidang teknologi komunikasi yaitu...", o: ["Kemudahan informasi", "Sikap individualis", "Pencemaran", "Kesenjangan sosial"], j: 0},
+                {t: "Negara penemu alat telepon adalah...", o: ["Alexander Graham Bell", "Thomas Alva Edison", "Nikola Tesla", "Guglielmo Marconi"], j: 0}
+            ],
+            "PPKn": [
+                {t: "Nilai persatuan dan kesatuan tercermin pada sila Pancasila ke-...", o: ["1", "2", "3", "4"], j: 2},
+                {t: "UUD 1945 dirumuskan oleh lembaga...", o: ["BPUPKI", "PPKI", "KNPI", "DPR"], j: 0},
+                {t: "Pelaksanaan hak dan kewajiban harus dilaksanakan secara...", o: ["Dahulukan hak", "Dahulukan kewajiban", "Seimbang", "Bebas"], j: 2},
+                {t: "Menghargai hasil karya orang lain merupakan wujud pengamalan sila ke-...", o: ["2", "3", "4", "5"], j: 3},
+                {t: "Sistem pemerintahan di Indonesia berbentuk...", o: ["Kerajaan", "Republik", "Monarki", "Federal"], j: 1}
+            ],
+            "Bahasa Inggris": [
+                {t: "The earth goes around the...", o: ["Moon", "Sun", "Stars", "Mars"], j: 1},
+                {t: "Something that happened yesterday is in the...", o: ["Future", "Present", "Past", "Now"], j: 2},
+                {t: "The person who flies an airplane is a...", o: ["Driver", "Pilot", "Captain", "Sailor"], j: 1},
+                {t: "What is the synonym of 'Smart'?", o: ["Clever / Intelligent", "Lazy", "Stupid", "Slow"], j: 0},
+                {t: "Indonesia celebrated its Independence Day on...", o: ["August 17th", "October 28th", "May 2nd", "December 25th"], j: 0}
+            ]
+        }
     };
 
     function pilihKelas(kelas) {
@@ -304,6 +454,22 @@
         document.getElementById('step-kelas').classList.add('hidden');
         document.getElementById('step-mapel').classList.remove('hidden');
         document.getElementById('teks-kelas').innerText = `Pilih Mata Pelajaran (${kelas})`;
+
+        // Render tombol mapel berdasarkan kelas
+        let mapelList = daftarMapelPerKelas[kelas];
+        let htmlMapel = '';
+        mapelList.forEach(m => {
+            let icon = "📖";
+            if(m === "Matematika") icon = "📐";
+            else if(m === "IPA" || m === "IPAS") icon = "🌱";
+            else if(m === "IPS") icon = "🌍";
+            else if(m === "PPKn") icon = "🇮🇩";
+            else if(m === "Bahasa Inggris") icon = "🔤";
+
+            htmlMapel += `<button onclick="pilihMapel('${m}')" class="btn-mapel">${icon} ${m}</button>`;
+        });
+
+        document.getElementById('container-mapel').innerHTML = htmlMapel;
     }
 
     function kembaliKeKelas() {
@@ -314,8 +480,8 @@
     function pilihMapel(mapel) {
         mapelAktif = mapel;
         soalIndeks = 0;
-        skor = 0;
-        daftarSoalAktif = bankSoal[mapel];
+        jumlahBenar = 0;
+        daftarSoalAktif = bankSoal[kelasAktif][mapel];
 
         document.getElementById('step-mapel').classList.add('hidden');
         document.getElementById('step-kuis').classList.remove('hidden');
@@ -343,7 +509,7 @@
     function jawab(pilihanIndex) {
         let curr = daftarSoalAktif[soalIndeks];
         if (pilihanIndex === curr.j) {
-            skor += 10; // Menambah poin per jawaban benar
+            jumlahBenar++;
         }
         soalIndeks++;
         muatSoal();
@@ -352,10 +518,19 @@
     function tampilkanHasil() {
         document.getElementById('step-kuis').classList.add('hidden');
         document.getElementById('step-hasil').classList.remove('hidden');
-        document.getElementById('skor-akhir').innerText = `Total Skor: ${skor}`;
+        
+        // Kalkulasi Skor skala 100
+        let totalSoal = daftarSoalAktif.length;
+        let skorAkhir = Math.round((jumlahBenar / totalSoal) * 100);
+
+        document.getElementById('skor-akhir').innerText = `Total Skor: ${skorAkhir}`;
         
         let pesan = "Hebat! Pertahankan prestasi belajarmu! 🌟";
-        if (skor < 70) pesan = "Tetap semangat belajar ya! Coba lagi yuk 💪";
+        if (skorAkhir < 70) {
+            pesan = "Tetap semangat belajar ya! Coba lagi yuk 💪";
+        } else if (skorAkhir === 100) {
+            pesan = "Luar Biasa! Nilai Sempurna! 🎉🏆";
+        }
         document.getElementById('pesan-hasil').innerText = pesan;
     }
 
