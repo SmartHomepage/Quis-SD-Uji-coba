@@ -3,739 +3,430 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIM Wonoanti EduQuiz</title>
-    <style>
-        :root {
-            --primary: #0284c7;
-            --primary-hover: #0369a1;
-            --secondary: #06b6d4;
-            --success: #10b981;
-            --danger: #ef4444;
-            --bg: #f1f5f9;
-            --card-bg: rgba(255, 255, 255, 0.93);
-            --text: #1e293b;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Memasang latar belakang gambar */
-            background: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.45)), 
-                        url('background.png') no-repeat center center fixed;
-            background-size: cover;
-            color: var(--text);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 650px;
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-            padding: 28px;
-            margin: 16px;
-            box-sizing: border-box;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-
-        h1, h2 {
-            text-align: center;
-            color: var(--primary);
-            margin-top: 0;
-            font-weight: 700;
-        }
-
-        p {
-            text-align: center;
-            color: #475569;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #cbd5e1;
-            border-radius: 10px;
-            font-size: 15px;
-            box-sizing: border-box;
-            outline: none;
-            background: #ffffff;
-            transition: border-color 0.2s;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary);
-        }
-
-        .grid-menu {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 14px 18px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 6px rgba(2, 132, 199, 0.25);
-        }
-
-        button:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-        }
-
-        .btn-mapel {
-            background: linear-gradient(135deg, #0284c7, #06b6d4);
-            text-align: center;
-            padding: 16px;
-            font-size: 16px;
-        }
-
-        .btn-opsi {
-            background-color: #ffffff;
-            color: var(--text);
-            border: 2px solid #e2e8f0;
-            width: 100%;
-            margin-bottom: 10px;
-            text-align: left;
-            box-shadow: none;
-        }
-
-        .btn-opsi:hover {
-            background-color: #e0f2fe;
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: none;
-        }
-
-        .nav-quiz-container {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-
-        .btn-nav-quiz {
-            background-color: #e2e8f0;
-            color: #334155;
-            font-size: 13px;
-            padding: 8px 12px;
-            border-radius: 8px;
-            box-shadow: none;
-            flex: 1;
-            min-width: 110px;
-            text-align: center;
-        }
-
-        .btn-nav-quiz:hover {
-            background-color: #cbd5e1;
-            color: #0f172a;
-            transform: none;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .quiz-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            font-weight: bold;
-            color: #64748b;
-            font-size: 14px;
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 10px;
-        }
-
-        .question-box {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #1e293b;
-            line-height: 1.5;
-        }
-
-        .result-card {
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        .score-display {
-            font-size: 36px;
-            font-weight: bold;
-            color: var(--primary);
-            margin: 15px 0 5px 0;
-        }
-
-        .detail-box {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .badge-result {
-            padding: 12px 20px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .badge-benar {
-            background-color: #d1fae5;
-            color: #065f46;
-        }
-
-        .badge-salah {
-            background-color: #fee2e2;
-            color: #991b1b;
-        }
-    </style>
+    <title>Website Resmi - MIM WONOANTI III</title>
+    <!-- Tailwind CSS untuk Desain Modern -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-slate-50 font-sans text-slate-800">
 
-<div class="container">
-    <!-- MENU 1: PENDAFTARAN DATA SISWA -->
-    <div id="step-daftar">
-        <h1>Welcome to EduQuiz<br>MIM Wonoanti III</h1>
-        <p>Isi data diri sebelum mulai pengerjaan kuis:</p>
-        <form id="form-daftar" onsubmit="simpanPendaftaran(event)">
-            <div class="form-group">
-                <label for="nama">Nama Lengkap Siswa</label>
-                <input type="text" id="nama" placeholder="Contoh: Ahmad Fauzi" required>
+    <!-- Header & Navigasi dengan Menu yang Diperbarui -->
+    <header class="bg-emerald-700 text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white text-emerald-800 font-bold px-3 py-2 rounded-lg text-xl">MI</div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">MIM WONOANTI III</h1>
+                    <p class="text-xs text-emerald-200">Unggul, Berkarakter, dan Islami</p>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="sekolah">Asal Sekolah</label>
-                <input type="text" id="sekolah" value="MIM Wonoanti III" placeholder="Nama Sekolah" required>
+            <nav class="hidden md:flex space-x-6 font-medium text-sm items-center">
+                <a href="#beranda" class="hover:text-emerald-200 transition">Beranda</a>
+                <a href="#profil" class="hover:text-emerald-200 transition">Profil</a>
+                <a href="#kegiatan" class="hover:text-emerald-200 transition">Kegiatan & Ekstrakurikuler</a>
+                <a href="#ppdb" class="hover:text-emerald-200 transition">PPDB</a>
+                <a href="#artikel" class="hover:text-emerald-200 transition">Info Terkini</a>
+                <a href="#galeri" class="hover:text-emerald-200 transition">Galeri</a>
+                <a href="#kontak" class="hover:text-emerald-200 transition">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- BAGIAN SLIDESHOW GAMBAR / VIDEO DI AWAL -->
+    <section id="beranda" class="relative bg-sky-900 text-white overflow-hidden">
+        <!-- Container Slider -->
+        <div id="slider" class="relative w-full h-[400px] md:h-[550px]">
+            
+            <!-- Slide 1 -->
+            <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-100 flex items-center justify-center">
+                <img src="path/ke/folder/gambar-banner-eduquiz.jpg" alt="EduQuiz MIM Wonoanti III" class="absolute inset-0 w-full h-full object-cover object-center" />
+                <div class="absolute inset-0 bg-sky-950/40"></div>
+                <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+                    <span class="bg-amber-400 text-slate-900 text-xs md:text-sm font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md">
+                        Belajar Seru, Wawasan Luas!
+                    </span>
+                    <h2 class="text-3xl md:text-6xl font-extrabold mt-4 mb-4 drop-shadow-md">
+                        Welcome to EduQuiz <br>MIM Wonoanti III
+                    </h2>
+                    <p class="text-base md:text-xl text-sky-100 mb-8 drop-shadow">
+                        Wadah kuis interaktif yang seru dan menyenangkan untuk mengasah kemampuan siswa-siswi berlandaskan nilai Islam.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="#ppdb" class="bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-8 py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+                            Daftar PPDB Sekarang
+                        </a>
+                        <a href="#profil" class="bg-white/10 hover:bg-white/25 backdrop-blur-md text-white border border-white/30 font-semibold px-8 py-3.5 rounded-xl shadow transition">
+                            Pelajari Lebih Lanjut
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="kelas-daftar">Pilihan Kelas</label>
-                <select id="kelas-daftar" required>
-                    <option value="">-- Pilih Kelas --</option>
-                    <option value="Kelas 1">Kelas 1 SD/MI</option>
-                    <option value="Kelas 2">Kelas 2 SD/MI</option>
-                    <option value="Kelas 3">Kelas 3 SD/MI</option>
-                    <option value="Kelas 4">Kelas 4 SD/MI</option>
-                    <option value="Kelas 5">Kelas 5 SD/MI</option>
-                    <option value="Kelas 6">Kelas 6 SD/MI</option>
-                </select>
+
+            <!-- Slide 2 -->
+            <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0 flex items-center justify-center">
+                <img src="path/ke/folder/gambar-kegiatan-2.jpg" alt="Kegiatan Madrasah" class="absolute inset-0 w-full h-full object-cover object-center" />
+                <div class="absolute inset-0 bg-emerald-950/50"></div>
+                <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+                    <span class="bg-amber-400 text-slate-900 text-xs md:text-sm font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md">
+                        Prestasi & Kreativitas
+                    </span>
+                    <h2 class="text-3xl md:text-6xl font-extrabold mt-4 mb-4 drop-shadow-md">
+                        Mencetak Generasi Unggul
+                    </h2>
+                    <p class="text-base md:text-xl text-emerald-100 mb-8 drop-shadow">
+                        Mengembangkan potensi akademik dan akhlak mulia siswa di era digital.
+                    </p>
+                    <a href="#profil" class="bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-8 py-3.5 rounded-xl shadow-lg transition">
+                        Jelajahi Profil
+                    </a>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="email">Email Siswa / Orang Tua</label>
-                <input type="email" id="email" placeholder="contoh@gmail.com" required>
+
+            <!-- Slide 3 -->
+            <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0 flex items-center justify-center bg-gradient-to-r from-teal-800 to-emerald-800">
+                <div class="relative z-10 text-center px-6 max-w-3xl">
+                    <span class="bg-amber-400 text-slate-900 text-xs font-bold px-3 py-1 rounded-full uppercase">Pendaftaran Siswa Baru</span>
+                    <h2 class="text-3xl md:text-5xl font-bold mt-3 mb-4">Penerimaan Peserta Didik Baru (PPDB)</h2>
+                    <p class="text-base md:text-xl text-emerald-100 mb-6">Telah dibuka tahun ajaran baru. Mari bergabung bersama madrasah unggulan kami.</p>
+                    <a href="#kontak" class="bg-white hover:bg-slate-100 text-emerald-900 font-semibold px-6 py-3 rounded-lg shadow transition">Hubungi Panitia</a>
+                </div>
             </div>
-            <button type="submit" style="width: 100%; margin-top: 10px;">Lanjut ke Pilihan Kelas 🚀</button>
-        </form>
-    </div>
 
-    <!-- MENU 2: PILIH KELAS -->
-    <div id="step-kelas" class="hidden">
-        <h1>EduQuiz MIM Wonoanti III</h1>
-        <p>Pilih tingkat kelas kuis:</p>
-        <div class="grid-menu">
-            <button onclick="pilihKelas('Kelas 1')" class="btn-mapel">🌟 Kelas 1</button>
-            <button onclick="pilihKelas('Kelas 2')" class="btn-mapel">🚀 Kelas 2</button>
-            <button onclick="pilihKelas('Kelas 3')" class="btn-mapel">🏆 Kelas 3</button>
-            <button onclick="pilihKelas('Kelas 4')" class="btn-mapel">🎯 Kelas 4</button>
-            <button onclick="pilihKelas('Kelas 5')" class="btn-mapel">🔥 Kelas 5</button>
-            <button onclick="pilihKelas('Kelas 6')" class="btn-mapel">🎓 Kelas 6</button>
-        </div>
-    </div>
-
-    <!-- MENU 3: PILIH MATA PELAJARAN -->
-    <div id="step-mapel" class="hidden">
-        <h2 id="teks-kelas">Pilih Mata Pelajaran</h2>
-        <p>Pilih pelajaran yang ingin dikerjakan:</p>
-        <div class="grid-menu" id="container-mapel"></div>
-        <button onclick="kembaliKeKelas()" style="margin-top: 20px; background-color: #64748b; width: 100%;">← Kembali ke Menu Kelas</button>
-    </div>
-
-    <!-- MENU 4: HALAMAN PENGERJAAN KUIS -->
-    <div id="step-kuis" class="hidden">
-        <div class="nav-quiz-container">
-            <button onclick="soalSebelumnya()" class="btn-nav-quiz">← Soal Lalu</button>
-            <button onclick="kembaliKeMapelLangsung()" class="btn-nav-quiz">📚 Menu Pelajaran</button>
-            <button onclick="kembaliKeKelasLangsung()" class="btn-nav-quiz">🏫 Menu Kelas</button>
         </div>
 
-        <div class="quiz-header">
-            <span id="label-mapel-kelas">Matematika - Kelas 1</span>
-            <span id="label-nomor">Soal 1 dari 5</span>
+        <!-- Tombol Navigasi Kanan & Kiri (< >) -->
+        <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-black/40 hover:bg-black/70 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-xl font-bold transition">
+            &#10094;
+        </button>
+        <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-black/40 hover:bg-black/70 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-xl font-bold transition">
+            &#10095;
+        </button>
+    </section>
+
+    <!-- Bagian Profil Singkat & Ekstrakurikuler -->
+    <section id="profil" class="py-16 bg-slate-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl md:text-3xl font-bold text-slate-900">Profil & Tentang Madrasah</h3>
+                <div class="w-16 h-1 bg-emerald-600 mx-auto mt-2"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                <!-- Kotak Kiri: Pendidikan Berkualitas -->
+                <div class="bg-emerald-700 text-white p-8 rounded-xl shadow-md flex flex-col justify-center items-center text-center">
+                    <span class="text-5xl mb-4">📚</span>
+                    <h4 class="text-xl font-bold">Pendidikan Berkualitas</h4>
+                    <p class="text-emerald-100 mt-2 text-sm leading-relaxed">Didukung oleh tenaga pendidik profesional yang berdedikasi tinggi dalam membimbing siswa-siswi mencapai prestasi terbaik.</p>
+                </div>
+
+                <!-- Kotak Kanan: Sambutan / Profil Singkat Kepala Madrasah -->
+                <div class="bg-emerald-700 text-white p-8 rounded-xl shadow-md flex flex-col justify-center">
+                    <div class="text-center mb-4">
+                        <span class="text-4xl">🌟</span>
+                        <h4 class="text-xl font-bold mt-2">Sambutan Kepala Madrasah</h4>
+                    </div>
+                    <p class="text-emerald-100 text-sm leading-relaxed text-justify">
+                        "Selamat datang di website resmi MIM Wonoanti III. Kami berkomitmen untuk memberikan pendidikan dasar Islam yang memadukan kecerdasan intelektual, keterampilan, serta pembentukan karakter akhlakul karimah bagi peserta didik."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Bagian Visi & Misi -->
+            <div class="mt-8 bg-white p-8 rounded-xl shadow-sm border border-slate-200">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h4 class="text-xl font-semibold text-emerald-700 mb-2">Visi Kami</h4>
+                    <p class="text-slate-600 mb-6 italic">"Terwujudnya peserta didik yang religius, cerdas, terampil, dan berwawasan lingkungan."</p>
+                    
+                    <h4 class="text-xl font-semibold text-emerald-700 mb-3">Misi Kami</h4>
+                    <ul class="list-disc text-left inline-block text-slate-600 space-y-2">
+                        <li>Menanamkan nilai-nilai keislaman dalam kegiatan sehari-hari.</li>
+                        <li>Melaksanakan pembelajaran yang aktif, kreatif, dan menyenangkan.</li>
+                        <li>Mengembangkan potensi akademik dan non-akademik siswa.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="question-box" id="soal-teks">Teks pertanyaan kuis...</div>
-        <div id="opsi-container"></div>
-    </div>
+    </section>
 
-    <!-- MENU 5: LAPORAN HASIL KUIS -->
-    <div id="step-hasil" class="hidden result-card">
-        <h2>Pengerjaan Selesai! 🎉</h2>
-        <p>Data hasil kuis telah otomatis terkirim ke email sekolah.</p>
-        <div class="score-display" id="skor-akhir">Total Skor: 0</div>
-        
-        <div class="detail-box">
-            <div class="badge-result badge-benar" id="jumlah-benar">Benar: 0</div>
-            <div class="badge-result badge-salah" id="jumlah-salah">Salah: 0</div>
+    <!-- Bagian Kegiatan & Ekstrakurikuler -->
+    <section id="kegiatan" class="py-16 container mx-auto px-6">
+        <div class="text-center mb-12">
+            <h3 class="text-2xl md:text-3xl font-bold text-slate-900">Kegiatan & Ekstrakurikuler</h3>
+            <div class="w-16 h-1 bg-emerald-600 mx-auto mt-2"></div>
+            <p class="text-slate-600 mt-2 text-sm">wadah pengembangan minat, bakat, dan karakter siswa.</p>
         </div>
 
-        <p id="pesan-hasil" style="font-weight: 600; font-size: 16px; margin-bottom: 25px;"></p>
-        <button onclick="kembaliKeMenuUtama()" style="width: 100%;">Kerjakan Kuis Lain 🏠</button>
-    </div>
-</div>
+        <div class="max-w-2xl mx-auto bg-emerald-700 text-white p-8 rounded-xl shadow-md">
+            <div class="text-center mb-6">
+                <span class="text-4xl">🏆</span>
+                <h4 class="text-xl font-bold mt-2">Pilihan Ekstrakurikuler Madrasah</h4>
+                <p class="text-emerald-100 text-xs mt-1">Silakan klik menu kegiatan di bawah untuk melihat informasi lengkap:</p>
+            </div>
+            <ul class="space-y-2 text-sm">
+                <li>
+                    <a href="#pramuka" class="bg-emerald-800/60 hover:bg-emerald-800 px-4 py-3 rounded-lg flex items-center justify-between transition">
+                        <span class="flex items-center gap-2">✔ Pramuka (Kepanduan Hizbul Wathan)</span>
+                        <span class="text-xs text-emerald-200 underline">Lihat &rarr;</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#tapaksuci" class="bg-emerald-800/60 hover:bg-emerald-800 px-4 py-3 rounded-lg flex items-center justify-between transition">
+                        <span class="flex items-center gap-2">✔ Tapak Suci Putera Muhammadiyah</span>
+                        <span class="text-xs text-emerald-200 underline">Lihat &rarr;</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#tahfidz" class="bg-emerald-800/60 hover:bg-emerald-800 px-4 py-3 rounded-lg flex items-center justify-between transition">
+                        <span class="flex items-center gap-2">✔ Tahfidzul Qur'an & Seni Baca Al-Qur'an</span>
+                        <span class="text-xs text-emerald-200 underline">Lihat &rarr;</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#olahraga" class="bg-emerald-800/60 hover:bg-emerald-800 px-4 py-3 rounded-lg flex items-center justify-between transition">
+                        <span class="flex items-center gap-2">✔ Olahraga (Bulutangkis & Tenis Meja)</span>
+                        <span class="text-xs text-emerald-200 underline">Lihat &rarr;</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#seni" class="bg-emerald-800/60 hover:bg-emerald-800 px-4 py-3 rounded-lg flex items-center justify-between transition">
+                        <span class="flex items-center gap-2">✔ Seni Tari & Drumband Madrasah</span>
+                        <span class="text-xs text-emerald-200 underline">Lihat &rarr;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
 
-<script>
-    let dataSiswa = {
-        nama: '',
-        sekolah: '',
-        kelas: '',
-        email: ''
-    };
+    <!-- Bagian PPDB (Penerimaan Peserta Didik Baru) -->
+    <section id="ppdb" class="py-16 bg-emerald-50 border-y border-emerald-100">
+        <div class="container mx-auto px-6 text-center max-w-3xl">
+            <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Tahun Ajaran Baru</span>
+            <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mt-3 mb-4">Pendaftaran Peserta Didik Baru (PPDB)</h3>
+            <p class="text-slate-600 mb-6">Membuka pendaftaran siswa/siswi baru kelas 1 Madrasah Ibtidaiyah. Dapatkan fasilitas belajar terbaik, lingkungan islami, serta potongan khusus bagi pendaftar gelombang pertama.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#kontak" class="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold px-6 py-3 rounded-xl shadow transition">Formulir & Syarat Pendaftaran</a>
+            </div>
+        </div>
+    </section>
 
-    let kelasAktif = '';
-    let mapelAktif = '';
-    let soalIndeks = 0;
-    let daftarSoalAktif = [];
-    let jawabanSiswa = [];
+    <!-- BAGIAN ARTIKEL & INFO TERKINI -->
+    <section id="artikel" class="py-16 container mx-auto px-6">
+        <div class="text-center mb-12">
+            <h3 class="text-2xl md:text-3xl font-bold text-slate-900">Info Terkini & Berita</h3>
+            <div class="w-16 h-1 bg-emerald-600 mx-auto mt-2"></div>
+            <p class="text-slate-600 mt-2 text-sm">Update kegiatan terbaru seputar madrasah.</p>
+        </div>
 
-    const emailSekolah = "mimwonoanti3@gmail.com";
+        <div class="grid md:grid-cols-3 gap-8">
+            <article class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                <div class="bg-emerald-200 h-40 flex items-center justify-center text-emerald-800 font-bold text-lg">
+                    📷 [Foto Kegiatan 1]
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded">7 Agustus 2026</span>
+                        <h4 class="font-bold text-lg text-slate-900 mt-2 mb-2">Peringatan Hari Besar Islam di Madrasah</h4>
+                        <p class="text-slate-600 text-sm">Siswa-siswi sangat antusias mengikuti rangkaian lomba keagamaan dalam rangka menyambut hari besar Islam...</p>
+                    </div>
+                    <a href="#" class="text-emerald-700 font-semibold text-sm mt-4 inline-block hover:underline">Baca Selengkapnya &rarr;</a>
+                </div>
+            </article>
 
-    const daftarMapelPerKelas = {
-        "Kelas 1": ["Matematika", "Bahasa Indonesia", "IPAS", "PPKn", "Bahasa Inggris"],
-        "Kelas 2": ["Matematika", "Bahasa Indonesia", "IPAS", "PPKn", "Bahasa Inggris"],
-        "Kelas 3": ["Matematika", "Bahasa Indonesia", "IPAS", "PPKn", "Bahasa Inggris"],
-        "Kelas 4": ["Matematika", "Bahasa Indonesia", "IPA", "IPS", "PPKn", "Bahasa Inggris"],
-        "Kelas 5": ["Matematika", "Bahasa Indonesia", "IPA", "IPS", "PPKn", "Bahasa Inggris"],
-        "Kelas 6": ["Matematika", "Bahasa Indonesia", "IPA", "IPS", "PPKn", "Bahasa Inggris"]
-    };
+            <article class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                <div class="bg-emerald-200 h-40 flex items-center justify-center text-emerald-800 font-bold text-lg">
+                    📷 [Foto Kegiatan 2]
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded">1 Agustus 2026</span>
+                        <h4 class="font-bold text-lg text-slate-900 mt-2 mb-2">Pelaksanaan Ujian Tengah Semester</h4>
+                        <p class="text-slate-600 text-sm">Ujian tengah semester berlangsung tertib dan lancar dengan menggunakan metode berbasis lembar soal dan digital...</p>
+                    </div>
+                    <a href="#" class="text-emerald-700 font-semibold text-sm mt-4 inline-block hover:underline">Baca Selengkapnya &rarr;</a>
+                </div>
+            </article>
 
-    const bankSoal = {
-        "Kelas 1": {
-            "Matematika": [
-                {t: "Hasil dari 4 + 3 adalah...", o: ["6", "7", "8", "9"], j: 1},
-                {t: "Berapakah hasil dari 10 - 4?", o: ["5", "6", "7", "8"], j: 1},
-                {t: "Lambang bilangan 'Delapan' adalah...", o: ["6", "7", "8", "9"], j: 2},
-                {t: "Bentuk roda sepeda adalah...", o: ["Segitiga", "Persegi", "Lingkaran", "Kotak"], j: 2},
-                {t: "Urutan angka setelah 14 adalah...", o: ["13", "15", "16", "17"], j: 1}
-            ],
-            "Bahasa Indonesia": [
-                {t: "Huruf pertama dari kata 'Kucing' adalah...", o: ["K", "U", "C", "G"], j: 0},
-                {t: "Hewan yang dapat terbang di udara adalah...", o: ["Ikan", "Burung", "Kucing", "Kambing"], j: 1},
-                {t: "Lawan kata dari 'Besar' adalah...", o: ["Panjang", "Kecil", "Tinggi", "Luas"], j: 1},
-                {t: "Alat yang digunakan untuk menulis adalah...", o: ["Penghapus", "Pensil", "Penggaris", "Gunting"], j: 1},
-                {t: "Mata kita gunakan untuk...", o: ["Mendengar", "Melihat", "Mencium", "Merasa"], j: 1}
-            ],
-            "IPAS": [
-                {t: "Bagian tubuh yang digunakan untuk mendengar suara adalah...", o: ["Mata", "Telinga", "Hidung", "Mulut"], j: 1},
-                {t: "Ikan bernapas dan hidup di...", o: ["Darat", "Pohon", "Air", "Udara"], j: 2},
-                {t: "Benda yang terasa panas di siang hari berasal dari sinar...", o: ["Bulan", "Lampu", "Matahari", "Lilin"], j: 2},
-                {t: "Kebersihan gigi dirawat dengan cara...", o: ["Mencuci tangan", "Menggosok gigi", "Keramas", "Mandi"], j: 1},
-                {t: "Ayam berkembang biak dengan cara...", o: ["Melahirkan", "Bertelur", "Beranak", "Membelah diri"], j: 1}
-            ],
-            "PPKn": [
-                {t: "Simbol Sila Pertama Pancasila adalah...", o: ["Bintang", "Rantai", "Pohon Beringin", "Kepala Banteng"], j: 0},
-                {t: "Warna bendera negara Indonesia adalah...", o: ["Merah Kuning", "Merah Putih", "Putih Biru", "Hijau Putih"], j: 1},
-                {t: "Sebelum makan kita harus mengucapkan...", o: ["Salam", "Doa", "Maaf", "Terima kasih"], j: 1},
-                {t: "Dasar negara Indonesia adalah...", o: ["UUD 1945", "Pancasila", "Garuda", "Bendera"], j: 1},
-                {t: "Sikap saling membantu antar sesama teman adalah perbuatan...", o: ["Buruk", "Terpuji", "Rugi", "Nakal"], j: 1}
-            ],
-            "Bahasa Inggris": [
-                {t: "Bahasa Inggris dari warna 'Merah' adalah...", o: ["Blue", "Red", "Green", "Yellow"], j: 1},
-                {t: "Arti kata 'Cat' adalah...", o: ["Anjing", "Kucing", "Burung", "Ikan"], j: 1},
-                {t: "Bahasa Inggris angka 'Satu' adalah...", o: ["One", "Two", "Three", "Four"], j: 0},
-                {t: "Bahasa Inggris dari 'Buku' adalah...", o: ["Pen", "Pencil", "Book", "Eraser"], j: 2},
-                {t: "Ucapan 'Good Morning' artinya selamat...", o: ["Pagi", "Siang", "Sore", "Malam"], j: 0}
-            ]
-        },
-        "Kelas 2": {
-            "Matematika": [
-                {t: "Hasil perkalian 3 x 4 adalah...", o: ["7", "10", "12", "15"], j: 2},
-                {t: "Hasil dari 45 + 23 adalah...", o: ["68", "67", "58", "78"], j: 0},
-                {t: "Jam dinding menunjuk angka 3 pendek dan angka 12 panjang, dibaca pukul...", o: ["03.00", "12.03", "03.12", "12.00"], j: 0},
-                {t: "Bangun datar yang memiliki 3 buah sisi adalah...", o: ["Persegi", "Segitiga", "Lingkaran", "Trapesium"], j: 1},
-                {t: "Nilai tempat angka 5 pada bilangan 352 adalah...", o: ["Ratusan", "Puluhan", "Satuan", "Ribuan"], j: 1}
-            ],
-            "Bahasa Indonesia": [
-                {t: "Lawan kata dari 'Rajin' adalah...", o: ["Pintar", "Pandai", "Malas", "Giat"], j: 2},
-                {t: "Kalimat perintah biasanya diakhiri tanda...", o: ["Tanya (?)", "Seru (!)", "Titik (.)", "Koma (,)"], j: 1},
-                {t: "Sinonim (persamaan kata) dari 'Pandai' adalah...", o: ["Cerdas", "Bodoh", "Malas", "Nakal"], j: 0},
-                {t: "Ibu membeli buah di...", o: ["Stasiun", "Pasar", "Sekolah", "Rumah Sakit"], j: 1},
-                {t: "Kata untuk menanyakan nama seseorang adalah...", o: ["Dimana", "Siapa", "Kapan", "Berapa"], j: 1}
-            ],
-            "IPAS": [
-                {t: "Tumbuhan memanfaatkan sinar matahari untuk...", o: ["Mandi", "Membuat makanan", "Tidur", "Bernapas"], j: 1},
-                {t: "Tempat hidup hewan seperti ikan dan udang berada di...", o: ["Darat", "Air", "Udara", "Pohon"], j: 1},
-                {t: "Wujud benda es batu jika dipanaskan akan...", o: ["Membeku", "Mencair", "Menguap", "Padat"], j: 1},
-                {t: "Perubahan bayangan terjadi karena arah cahaya...", o: ["Bulan", "Matahari", "Lampu", "Lilin"], j: 1},
-                {t: "Ulat akan berubah bentuk menjadi...", o: ["Semut", "Kupu-kupu", "Lalat", "Nyamuk"], j: 1}
-            ],
-            "PPKn": [
-                {t: "Sila kedua Pancasila disimbolkan dengan...", o: ["Bintang", "Rantai", "Pohon Beringin", "Kepala Banteng"], j: 1},
-                {t: "Bhinneka Tunggal Ika artinya berbeda-beda tetapi tetap...", o: ["Satu", "Beda", "Sama", "Sendiri"], j: 0},
-                {t: "Kewajiban seorang siswa di sekolah adalah...", o: ["Bermain", "Belajar", "Mendapat nilai", "Istirahat"], j: 1},
-                {t: "Menjaga kebersihan kelas dilakukan bersama dengan cara...", o: ["Piket kelas", "Musyawarah", "Olahraga", "Ujian"], j: 0},
-                {t: "Lambang negara Indonesia adalah burung...", o: ["Elang", "Garuda", "Merpati", "Rajawali"], j: 1}
-            ],
-            "Bahasa Inggris": [
-                {t: "Bahasa Inggris dari angka 10 adalah...", o: ["Eight", "Nine", "Ten", "Seven"], j: 2},
-                {t: "Arti kata 'Dog' adalah...", o: ["Kucing", "Anjing", "Kelinci", "Gajah"], j: 1},
-                {t: "'Thank you' mempunyai arti...", o: ["Maaf", "Sama-sama", "Terima kasih", "Halo"], j: 2},
-                {t: "Bahasa Inggris dari kata 'Ibu' adalah...", o: ["Father", "Mother", "Brother", "Sister"], j: 1},
-                {t: "Warna 'Yellow' dalam Bahasa Indonesia berarti...", o: ["Biru", "Kuning", "Hijau", "Merah"], j: 1}
-            ]
-        },
-        "Kelas 3": {
-            "Matematika": [
-                {t: "Hasil dari 125 + 243 adalah...", o: ["368", "358", "378", "268"], j: 0},
-                {t: "Hasil perkalian 8 x 7 adalah...", o: ["54", "56", "64", "48"], j: 1},
-                {t: "Pecahan 1/2 dibaca...", o: ["Satu per tiga", "Satu per dua", "Satu per empat", "Dua per satu"], j: 1},
-                {t: "Hasil dari 36 : 4 adalah...", o: ["8", "9", "7", "6"], j: 1},
-                {t: "Keliling persegi yang memiliki panjang sisi 5 cm adalah...", o: ["10 cm", "15 cm", "20 cm", "25 cm"], j: 2}
-            ],
-            "Bahasa Indonesia": [
-                {t: "Kata sapaan digunakan untuk...", o: ["Menegur atau menyapa", "Marah", "Menulis cerita", "Membaca"], j: 0},
-                {t: "Tanda baca di akhir kalimat tanya adalah...", o: ["!", ".", "?", ","], j: 2},
-                {t: "Gagasan utama dalam sebuah paragraf disebut...", o: ["Ide pokok", "Judul", "Tema", "Ringkasan"], j: 0},
-                {t: "Orang yang tugasnya mengemudikan pesawat terbang adalah...", o: ["Nahkoda", "Sopir", "Pilot", "Masinis"], j: 2},
-                {t: "Dongeng tentang kisah hewan yang berperilaku seperti manusia disebut...", o: ["Mite", "Fabel", "Legenda", "Sage"], j: 1}
-            ],
-            "IPAS": [
-                {t: "Makhluk hidup berkembang biak bertujuan untuk...", o: ["Mempertahankan keturunan", "Cepat mati", "Menjadi besar", "Mencari makan"], j: 0},
-                {t: "Benda padat yang berubah menjadi cair disebut proses...", o: ["Mencair", "Membeku", "Menguap", "Menghablur"], j: 0},
-                {t: "Proses pembuatan makanan oleh tumbuhan hijau disebut...", o: ["Fotosintesis", "Respirasi", "Adaptasi", "Erosi"], j: 0},
-                {t: "Berikut ini hewan yang mengalami metamorfosis sempurna adalah...", o: ["Kupu-kupu", "Kecoa", "Jangkrik", "Belalang"], j: 0},
-                {t: "Energi terbesar bagi kehidupan di bumi adalah...", o: ["Listrik", "Matahari", "Angin", "Minyak Bumi"], j: 1}
-            ],
-            "PPKn": [
-                {t: "Sila ke-3 Pancasila berbunyi...", o: ["Ketuhanan yang Maha Esa", "Persatuan Indonesia", "Keadilan sosial", "Kemanusiaan yang adil"], j: 1},
-                {t: "Semboyan negara Indonesia terdapat pada kaki Garuda Pancasila yaitu...", o: ["Tut Wuri Handayani", "Bhinneka Tunggal Ika", "Pancasila Sakti", "UUD 1945"], j: 1},
-                {t: "Mencapai keputusan bersama secara musyawarah merupakan sila ke-...", o: ["2", "3", "4", "5"], j: 2},
-                {t: "Mendapatkan kasih sayang dari orang tua adalah contoh...", o: ["Kewajiban anak", "Hak anak", "Tugas anak", "Aturan rumah"], j: 1},
-                {t: "Simbol sila ke-4 Pancasila adalah...", o: ["Pohon Beringin", "Kepala Banteng", "Padi dan Kapas", "Bintang"], j: 1}
-            ],
-            "Bahasa Inggris": [
-                {t: "What is the English word for 'Sekolah'?", o: ["Market", "Hospital", "School", "Library"], j: 2},
-                {t: "The color of the sky on a clear day is...", o: ["Green", "Blue", "Red", "Black"], j: 1},
-                {t: "The day after Monday is...", o: ["Sunday", "Tuesday", "Wednesday", "Friday"], j: 1},
-                {t: "'Father' in Indonesian means...", o: ["Ibu", "Ayah", "Kakek", "Paman"], j: 1},
-                {t: "How many legs does a cow have?", o: ["Two", "Three", "Four", "Five"], j: 2}
-            ]
-        },
-        "Kelas 4": {
-            "Matematika": [
-                {t: "Hasil dari 25 x 12 adalah...", o: ["250", "300", "350", "280"], j: 1},
-                {t: "FPB dari bilangan 12 dan 18 adalah...", o: ["2", "3", "6", "12"], j: 2},
-                {t: "KPK dari bilangan 4 dan 6 adalah...", o: ["8", "12", "16", "24"], j: 1},
-                {t: "Pecahan senilai dari 2/4 adalah...", o: ["1/2", "3/4", "2/3", "1/3"], j: 0},
-                {t: "Luas persegi dengan panjang sisi 8 cm adalah...", o: ["16 cm²", "32 cm²", "64 cm²", "72 cm²"], j: 2}
-            ],
-            "Bahasa Indonesia": [
-                {t: "Ide utama atau inti permasalahan dalam paragraf dinamakan...", o: ["Gagasan pokok", "Gagasan pendukung", "Kalimat penjelas", "Judul"], j: 0},
-                {t: "Wawancara bertujuan untuk memperoleh...", o: ["Uang", "Informasi", "Hadiah", "Kawan"], j: 1},
-                {t: "Orang yang memberikan informasi dalam wawancara disebut...", o: ["Pewawancara", "Narasumber", "Wartawan", "Reporter"], j: 1},
-                {t: "Penggunaan huruf kapital yang benar pada nama kota adalah...", o: ["jakarta", "Jakarta", "jaKarta", "JAKARTA"], j: 1},
-                {t: "Puisi lama yang setiap baitnya terdiri atas 4 baris berima a-b-a-b dinamakan...", o: ["Gurindam", "Pantun", "Syair", "Novel"], j: 1}
-            ],
-            "IPA": [
-                {t: "Gaya yang bekerja saat kita menarik ketapel adalah gaya...", o: ["Gesek", "Pegas", "Gravitasi", "Magnet"], j: 1},
-                {t: "Hewan pemakan daging dan tumbuhan (segala) disebut...", o: ["Herbivora", "Karnivora", "Omnivora", "Insektivora"], j: 2},
-                {t: "Bunyi dapat merambat paling cepat melalui medium benda...", o: ["Padat", "Cair", "Gas", "Hampa udara"], j: 0},
-                {t: "Bagian tumbuhan yang berfungsi menyerap air dan hara dalam tanah adalah...", o: ["Daun", "Batang", "Akar", "Bunga"], j: 2},
-                {t: "Perubahan energi pada setrika listrik adalah energi listrik menjadi...", o: ["Cahaya", "Panas", "Gerak", "Bunyi"], j: 1}
-            ],
-            "IPS": [
-                {t: "Indonesia dikenal sebagai negara maritim karena wilayahnya sebagian besar berupa...", o: ["Lautan", "Daratan", "Hutan", "Pegunungan"], j: 0},
-                {t: "Candi Borobudur merupakan peninggalan bersejarah beragama...", o: ["Hindu", "Buddha", "Islam", "Konghucu"], j: 1},
-                {t: "Suku Asmat merupakan suku bangsa yang berasal dari provinsi...", o: ["Aceh", "Jawa Timur", "Papua", "Bali"], j: 2},
-                {t: "Sumber daya alam yang tidak dapat diperbaharui contohnya...", o: ["Tumbuhan", "Hewan", "Minyak Bumi", "Air"], j: 2},
-                {t: "Kegiatan menghasilkan barang atau jasa disebut kegiatan...", o: ["Konsumsi", "Produksi", "Distribusi", "Tukar-menukar"], j: 1}
-            ],
-            "PPKn": [
-                {t: "Pemberian hak dan kewajiban secara seimbang sesuai dengan sila ke-...", o: ["2", "3", "4", "5"], j: 3},
-                {t: "Keberagaman suku dan budaya di Indonesia harus disikapi dengan cara...", o: ["Menghargai", "Memusuhi", "Abaikan", "Membandingkan"], j: 0},
-                {t: "Sila ke-5 Pancasila disimbolkan dengan...", o: ["Kepala Banteng", "Pohon Beringin", "Padi dan Kapas", "Rantai"], j: 2},
-                {t: "Wilayah administratif yang dipimpin oleh seorang Camat adalah...", o: ["Desa", "Kecamatan", "Kabupaten", "Provinsi"], j: 1},
-                {t: "Bentuk kerja sama tradisional warga desa untuk kepentingan bersama dinamakan...", o: ["Gotong Royong", "Ujian", "Kerja Individu", "Kompetisi"], j: 0}
-            ],
-            "Bahasa Inggris": [
-                {t: "An animal that has a long trunk and big ears is an...", o: ["Elephant", "Giraffe", "Tiger", "Lion"], j: 0},
-                {t: "We go to the library to...", o: ["Buy food", "Read books", "Swim", "Play football"], j: 1},
-                {t: "The opposite of 'Big' is...", o: ["Tall", "Small", "Short", "Long"], j: 1},
-                {t: "Twenty-five minus ten is...", o: ["Ten", "Fifteen", "Twenty", "Five"], j: 1},
-                {t: "What is 'Hospital' in Indonesian?", o: ["Pasar", "Sekolah", "Rumah Sakit", "Stasiun"], j: 2}
-            ]
-        },
-        "Kelas 5": {
-            "Matematika": [
-                {t: "Hasil dari 3/4 + 1/2 adalah...", o: ["4/6", "5/4", "1/2", "2/4"], j: 1},
-                {t: "Hasil perkalian pecahan 2/3 x 3/5 adalah...", o: ["6/15", "5/8", "6/8", "1/5"], j: 0},
-                {t: "Volume kubus yang memiliki panjang rusuk 5 cm adalah...", o: ["25 cm³", "100 cm³", "125 cm³", "150 cm³"], j: 2},
-                {t: "Sebuah bus melaju 60 km/jam selama 2 jam. Jarak yang ditempuh adalah...", o: ["30 km", "120 km", "180 km", "240 km"], j: 1},
-                {t: "Bentuk desimal dari pecahan 1/4 adalah...", o: ["0,2", "0,25", "0,5", "0,75"], j: 1}
-            ],
-            "Bahasa Indonesia": [
-                {t: "Teks yang berisi fakta dan informasi ilmiah dinamakan teks...", o: ["Fiksi", "Exposisi/Nonfiksi", "Dongeng", "Mitos"], j: 1},
-                {t: "Unsur intrik cerita berupa waktu dan tempat terjadinya peristiwa disebut...", o: ["Latar/Setting", "Alur", "Amanat", "Tokoh"], j: 0},
-                {t: "Pesan moral yang ingin disampaikan pengarang dalam cerita dinamakan...", o: ["Tema", "Amanat", "Plot", "Watak"], j: 1},
-                {t: "Sinonim dari kata 'Efektif' adalah...", o: ["Tepat guna", "Boros", "Lambat", "Sia-sia"], j: 0},
-                {t: "Singkatan nama gabungan huruf awal dari beberapa kata dinamakan...", o: ["Akronim", "Anonim", "Sinonim", "Antonim"], j: 0}
-            ],
-            "IPA": [
-                {t: "Organ pernapasan utama pada manusia adalah...", o: ["Jantung", "Paru-paru", "Hati", "Lambung"], j: 1},
-                {t: "Alat peredaran darah yang berfungsi memompa darah ke seluruh tubuh adalah...", o: ["Paru-paru", "Jantung", "Ginjal", "Hati"], j: 1},
-                {t: "Proses penguapan air laut/bumi menuju atmosfer dinamakan...", o: ["Evaporasi", "Kondensasi", "Presipitasi", "Infiltrasi"], j: 0},
-                {t: "Hubungan saling menguntungkan antara dua makhluk hidup dinamakan simbiose...", o: ["Parasitisme", "Komensalisme", "Mutualisme", "Amensalisme"], j: 2},
-                {t: "Benda yang tidak dapat menghantarkan panas dengan baik disebut...", o: ["Konduktor", "Isolator", "Radiator", "Reflektor"], j: 1}
-            ],
-            "IPS": [
-                {t: "Tokoh yang membacakan Teks Proklamasi Kemerdekaan Indonesia adalah...", o: ["Moh. Hatta", "Ir. Soekarno", "Sutan Sjahrir", "Ki Hajar Dewantara"], j: 1},
-                {t: "Negara tetangga yang berbatasan darat langsung dengan Indonesia di Pulau Kalimantan adalah...", o: ["Singapura", "Malaysia", "Filipina", "Thailand"], j: 1},
-                {t: "Peristiwa pengetikan Teks Proklamasi dilakukan oleh...", o: ["Sayuti Melik", "Sukarni", "B.M. Diah", "Ahmad Soebardjo"], j: 0},
-                {t: "Organisasi ASEAN didirikan pada tanggal 8 Agustus 1967 di kota...", o: ["Jakarta", "Bangkok", "Manila", "Kuala Lumpur"], j: 1},
-                {t: "Kerajaan Islam pertama di Pulau Jawa adalah...", o: ["Samudera Pasai", "Demak", "Mataram Islam", "Banten"], j: 1}
-            ],
-            "PPKn": [
-                {t: "Pancasila disahkan sebagai dasar negara Indonesia pada tanggal...", o: ["17 Agustus 1945", "18 Agustus 1945", "1 Juni 1945", "28 Oktober 1928"], j: 1},
-                {t: "Sikap cinta terhadap tanah air dan bangsa dinamakan...", o: ["Nasionalisme", "Egoisme", "Individualisme", "Etnosentrisme"], j: 0},
-                {t: "Hak Asasi Manusia dimiliki oleh seseorang sejak...", o: ["Lahir", "Dewasa", "Sekolah", "Bekerja"], j: 0},
-                {t: "Menjaga keutuhan NKRI merupakan kewajiban dari...", o: ["TNI saja", "Polri saja", "Presiden saja", "Seluruh rakyat Indonesia"], j: 3},
-                {t: "Sumpah Pemuda dicetuskan pada tanggal...", o: ["28 Oktober 1928", "17 Agustus 1945", "20 Mei 1908", "10 November 1945"], j: 0}
-            ],
-            "Bahasa Inggris": [
-                {t: "My father's brother is my...", o: ["Aunt", "Uncle", "Cousin", "Nephew"], j: 1},
-                {t: "The chef works in the...", o: ["Hospital", "School", "Kitchen / Restaurant", "Post office"], j: 2},
-                {t: "A year has ... months.", o: ["Ten", "Eleven", "Twelve", "Thirteen"], j: 2},
-                {t: "We use our ... to listen to music.", o: ["Eyes", "Ears", "Nose", "Mouth"], j: 1},
-                {t: "What is 'Penyakit' in English?", o: ["Healthy", "Disease / Sickness", "Doctor", "Medicine"], j: 1}
-            ]
-        },
-        "Kelas 6": {
-            "Matematika": [
-                {t: "Hasil dari -12 + 15 - (-5) adalah...", o: ["8", "18", "-2", "22"], j: 1},
-                {t: "Luas lingkaran yang memiliki jari-jari 7 cm adalah... (π = 22/7)", o: ["154 cm²", "44 cm²", "308 cm²", "616 cm²"], j: 0},
-                {t: "Hasil dari 2,5 x 0,4 adalah...", o: ["1,0", "0,1", "10,0", "0,25"], j: 0},
-                {t: "Sebuah tabung memiliki jari-jari 10 cm dan tinggi 20 cm. Volume tabung tersebut adalah... (π = 3,14)", o: ["6280 cm³", "3140 cm³", "1570 cm³", "628 cm³"], j: 0},
-                {t: "Rata-rata dari nilai 7, 8, 6, 9, 10 adalah...", o: ["7", "8", "8,5", "9"], j: 1}
-            ],
-            "Bahasa Indonesia": [
-                {t: "Teks yang berisi penjelasan tentang proses terjadinya suatu fenomena alam/sosial disebut...", o: ["Eksplanasi", "Narasi", "Deskripsi", "Persuasi"], j: 0},
-                {t: "Kalimat yang sesuai dengan kaidah tata bahasa resmi dinamakan kalimat...", o: ["Efektif", "Baku", "Langsung", "Utama"], j: 1},
-                {t: "Formulir yang diisi saat mendaftar menjadi anggota perpustakaan berisi data...", o: ["Pribadi", "Nilai siswa", "Keuangan", "Belanja"], j: 0},
-                {t: "Ungkapan 'Gulung tikar' mempunyai arti...", o: ["Merapikan tempat tidur", "Bangkrut", "Sukses", "Pindah rumah"], j: 1},
-                {t: "Pernyataan umum, deretan penjelas, dan penutup merupakan struktur dari teks...", o: ["Eksplanasi", "Laporan", "Cerpen", "Drama"], j: 0}
-            ],
-            "IPA": [
-                {t: "Perkembangbiakan tumbuhan secara generatif melibatkan pertemuan antara...", o: ["Akar dan batang", "Serbuk sari dan kepala putik", "Daun dan tunas", "Bunga dan buah"], j: 1},
-                {t: "Tumbuhan enceng gondok beradaptasi dengan cara memiliki batang...", o: ["Berongga", "Berduri", "Tebal", "Keras"], j: 0},
-                {t: "Rangkaian listrik yang disusun secara sejajar/bercabang disebut rangkaian...", o: ["Seri", "Paralel", "Campuran", "Terbuka"], j: 1},
-                {t: "Planet terdekat dari matahari dalam sistem tata surya kita adalah...", o: ["Venus", "Bumi", "Merkurius", "Mars"], j: 2},
-                {t: "Gerhana matahari terjadi saat posisi ... berada di antara Matahari dan Bumi.", o: ["Bintang", "Bulan", "Mars", "Awan"], j: 1}
-            ],
-            "IPS": [
-                {t: "Tokoh pencetus gagasan Politik Bebas Aktif Indonesia adalah...", o: ["Ir. Soekarno", "Moh. Hatta", "Sutan Sjahrir", "General Soedirman"], j: 1},
-                {t: "Konferensi Asia Afrika (KAA) pertama kali diselenggarakan di kota...", o: ["Jakarta", "Bandung", "Bogor", "Surakarta"], j: 1},
-                {t: "Pusat sekretariat ASEAN terletak di kota...", o: ["Kuala Lumpur", "Bangkok", "Jakarta", "Manila"], j: 2},
-                {t: "Modernisasi membawa dampak positif dibidang teknologi komunikasi yaitu...", o: ["Kemudahan informasi", "Sikap individualis", "Pencemaran", "Kesenjangan sosial"], j: 0},
-                {t: "Negara penemu alat telepon adalah...", o: ["Alexander Graham Bell", "Thomas Alva Edison", "Nikola Tesla", "Guglielmo Marconi"], j: 0}
-            ],
-            "PPKn": [
-                {t: "Nilai persatuan dan kesatuan tercermin pada sila Pancasila ke-...", o: ["1", "2", "3", "4"], j: 2},
-                {t: "UUD 1945 dirumuskan oleh lembaga...", o: ["BPUPKI", "PPKI", "KNPI", "DPR"], j: 0},
-                {t: "Pelaksanaan hak dan kewajiban harus dilaksanakan secara...", o: ["Dahulukan hak", "Dahulukan kewajiban", "Seimbang", "Bebas"], j: 2},
-                {t: "Menghargai hasil karya orang lain merupakan wujud pengamalan sila ke-...", o: ["2", "3", "4", "5"], j: 3},
-                {t: "Sistem pemerintahan di Indonesia berbentuk...", o: ["Kerajaan", "Republik", "Monarki", "Federal"], j: 1}
-            ],
-            "Bahasa Inggris": [
-                {t: "The earth goes around the...", o: ["Moon", "Sun", "Stars", "Mars"], j: 1},
-                {t: "Something that happened yesterday is in the...", o: ["Future", "Present", "Past", "Now"], j: 2},
-                {t: "The person who flies an airplane is a...", o: ["Driver", "Pilot", "Captain", "Sailor"], j: 1},
-                {t: "What is the synonym of 'Smart'?", o: ["Clever / Intelligent", "Lazy", "Stupid", "Slow"], j: 0},
-                {t: "Indonesia celebrated its Independence Day on...", o: ["August 17th", "October 28th", "May 2nd", "December 25th"], j: 0}
-            ]
-        }
-    };
+            <article class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                <div class="bg-emerald-200 h-40 flex items-center justify-center text-emerald-800 font-bold text-lg">
+                    📷 [Foto Kegiatan 3]
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded">25 Juli 2026</span>
+                        <h4 class="font-bold text-lg text-slate-900 mt-2 mb-2">Rapat Pleno Komite Bersama Wali Murid</h4>
+                        <p class="text-slate-600 text-sm">Pihak madrasah mengadakan audiensi bersama wali murid kelas 1 sampai 6 untuk menyelaraskan program pembelajaran...</p>
+                    </div>
+                    <a href="#" class="text-emerald-700 font-semibold text-sm mt-4 inline-block hover:underline">Baca Selengkapnya &rarr;</a>
+                </div>
+            </article>
+        </div>
+    </section>
 
-    function simpanPendaftaran(e) {
-        e.preventDefault();
-        dataSiswa.nama = document.getElementById('nama').value;
-        dataSiswa.sekolah = document.getElementById('sekolah').value;
-        dataSiswa.kelas = document.getElementById('kelas-daftar').value;
-        dataSiswa.email = document.getElementById('email').value;
+    <!-- Bagian Galeri Foto -->
+    <section id="galeri" class="py-16 bg-slate-100">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-2">Galeri Foto</h3>
+            <div class="w-16 h-1 bg-emerald-600 mx-auto mt-2 mb-8"></div>
+            
+            <!-- Wrapper Slider Galeri -->
+            <div class="relative max-w-6xl mx-auto px-4">
+                
+                <!-- Container Daftar Gambar (Bisa menampung banyak foto) -->
+                <div id="galleryContainer" class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 no-scrollbar">
+                    
+                    <!-- Item 1 -->
+                    <div class="min-w-[280px] md:min-w-[calc(25%-12px)] flex-shrink-0 snap-start bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                        <img src="Gemini_Generated_Image_95x46f95x46f95x4.png" alt="EduQuiz" class="w-full h-48 object-cover">
+                        <div class="p-4"><p class="text-sm font-semibold text-slate-700">EduQuiz MIM Wonoanti III</p></div>
+                    </div>
 
-        document.getElementById('step-daftar').classList.add('hidden');
-        pilihKelas(dataSiswa.kelas);
-    }
+                    <!-- Item 2 -->
+                    <div class="min-w-[280px] md:min-w-[calc(25%-12px)] flex-shrink-0 snap-start bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                        <img src="mimwonoanti3-b5be3a4b-20a2-4f0a-a9d3-d66a1f63aafd.jpg" alt="Kemah Akbar" class="w-full h-48 object-cover">
+                        <div class="p-4"><p class="text-sm font-semibold text-slate-700">Kemah Akbar Madrasah</p></div>
+                    </div>
 
-    function pilihKelas(kelas) {
-        kelasAktif = kelas;
-        document.getElementById('step-daftar').classList.add('hidden');
-        document.getElementById('step-kelas').classList.add('hidden');
-        document.getElementById('step-mapel').classList.remove('hidden');
-        document.getElementById('teks-kelas').innerText = `Pilih Mata Pelajaran (${kelas})`;
+                    <!-- Item 3 -->
+                    <div class="min-w-[280px] md:min-w-[calc(25%-12px)] flex-shrink-0 snap-start bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                        <img src="IKA2.jpg" alt="Dokumentasi Kegiatan" class="w-full h-48 object-cover">
+                        <div class="p-4"><p class="text-sm font-semibold text-slate-700">Aku Bangga Bagian Kemah Akbar</p></div>
+                    </div>
 
-        let mapelList = daftarMapelPerKelas[kelas];
-        let htmlMapel = '';
-        mapelList.forEach(m => {
-            let icon = "📖";
-            if(m === "Matematika") icon = "📐";
-            else if(m === "IPA" || m === "IPAS") icon = "🌱";
-            else if(m === "IPS") icon = "🌍";
-            else if(m === "PPKn") icon = "🇮🇩";
-            else if(m === "Bahasa Inggris") icon = "🔤";
+                    <!-- Item 4 (Tambah foto lainnya di sini) -->
+                    <div class="min-w-[280px] md:min-w-[calc(25%-12px)] flex-shrink-0 snap-start bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                        <div class="bg-emerald-200 h-48 flex items-center justify-center text-emerald-800 font-semibold">Dokumentasi 4</div>
+                        <div class="p-4"><p class="text-sm font-semibold text-slate-700">Kegiatan Belajar Mengajar</p></div>
+                    </div>
 
-            htmlMapel += `<button onclick="pilihMapel('${m}')" class="btn-mapel">${icon} ${m}</button>`;
+                    <!-- Item 5 (Contoh tambahan jika foto banyak) -->
+                    <div class="min-w-[280px] md:min-w-[calc(25%-12px)] flex-shrink-0 snap-start bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                        <div class="bg-emerald-200 h-48 flex items-center justify-center text-emerald-800 font-semibold">Dokumentasi 5</div>
+                        <div class="p-4"><p class="text-sm font-semibold text-slate-700">Ekstrakurikuler Pramuka</p></div>
+                    </div>
+
+                    <!-- Item 6 (Contoh tambahan jika foto banyak) -->
+                    <div class="min-w-[280px] md:min-w-[calc(25%-12px)] flex-shrink-0 snap-start bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                        <div class="bg-emerald-200 h-48 flex items-center justify-center text-emerald-800 font-semibold">Dokumentasi 5</div>
+                        <div class="p-4"><p class="text-sm font-semibold text-slate-700">Ekstrakurikuler Pramuka</p></div>
+                    </div>
+
+                    <!-- Item 7 (Contoh tambahan jika foto banyak) -->
+                    <div class="min-w-[280px] md:min-w-[calc(25%-12px)] flex-shrink-0 snap-start bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                        <div class="bg-emerald-200 h-48 flex items-center justify-center text-emerald-800 font-semibold">Dokumentasi 5</div>
+                        <div class="p-4"><p class="text-sm font-semibold text-slate-700">Ekstrakurikuler Pramuka</p></div>
+                    </div>
+
+                    <!-- Item 8 (Contoh tambahan jika foto banyak) -->
+                    <div class="min-w-[280px] md:min-w-[calc(25%-12px)] flex-shrink-0 snap-start bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                        <div class="bg-emerald-200 h-48 flex items-center justify-center text-emerald-800 font-semibold">Dokumentasi 5</div>
+                        <div class="p-4"><p class="text-sm font-semibold text-slate-700">Ekstrakurikuler Pramuka</p></div>
+                    </div>
+
+                    <!-- Item 9 (Contoh tambahan jika foto banyak) -->
+                    <div class="min-w-[280px] md:min-w-[calc(25%-12px)] flex-shrink-0 snap-start bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                        <div class="bg-emerald-200 h-48 flex items-center justify-center text-emerald-800 font-semibold">Dokumentasi 5</div>
+                        <div class="p-4"><p class="text-sm font-semibold text-slate-700">Ekstrakurikuler Pramuka</p></div>
+                    </div>
+
+                    <!-- Item 10 (Contoh tambahan jika foto banyak) -->
+                    <div class="min-w-[280px] md:min-w-[calc(25%-12px)] flex-shrink-0 snap-start bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                        <div class="bg-emerald-200 h-48 flex items-center justify-center text-emerald-800 font-semibold">Dokumentasi 5</div>
+                        <div class="p-4"><p class="text-sm font-semibold text-slate-700">Ekstrakurikuler Pramuka</p></div>
+                    </div>
+
+                </div>
+
+                <!-- Tombol Navigasi Kiri & Kanan -->
+                <button id="galleryPrev" class="absolute left-0 top-1/2 -translate-y-1/2 -ml-2 md:-ml-4 z-10 bg-emerald-700 hover:bg-emerald-800 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition font-bold text-lg">
+                    &#10094;
+                </button>
+                <button id="galleryNext" class="absolute right-0 top-1/2 -translate-y-1/2 -mr-2 md:-mr-4 z-10 bg-emerald-700 hover:bg-emerald-800 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition font-bold text-lg">
+                    &#10095;
+                </button>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Script Tambahan untuk Tombol Geser Galeri -->
+    <script>
+        const galleryContainer = document.getElementById('galleryContainer');
+        const galleryPrev = document.getElementById('galleryPrev');
+        const galleryNext = document.getElementById('galleryNext');
+
+        galleryNext.addEventListener('click', () => {
+            galleryContainer.scrollBy({ left: 300, behavior: 'smooth' });
         });
 
-        document.getElementById('container-mapel').innerHTML = htmlMapel;
-    }
+        galleryPrev.addEventListener('click', () => {
+            galleryContainer.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+    </script>
 
-    function kembaliKeKelas() {
-        document.getElementById('step-mapel').classList.add('hidden');
-        document.getElementById('step-kelas').classList.remove('hidden');
-    }
+    <!-- Bagian Kontak -->
+    <section id="kontak" class="py-16 container mx-auto px-6 text-center">
+        <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Kontak & Lokasi</h3>
+        <p class="text-slate-600 mb-6">Ingin mendaftarkan putra-putri Anda atau ingin tahu informasi lebih lanjut? Silakan hubungi kami melalui kontak di bawah ini.</p>
+        <div class="inline-block bg-white px-8 py-6 rounded-xl shadow-sm border border-slate-200 text-left">
+            <p class="text-slate-700 mb-3">📍 <strong>Lokasi:</strong> Wonoanti, Kecamatan..., Kabupaten...</p>
+            <p class="text-slate-700 mb-3">📞 <strong>Telepon/WhatsApp:</strong> 08xx-xxxx-xxxx</p>
+            <p class="text-slate-700">📧 <strong>Email:</strong> info@mimwonoanti3.sch.id</p>
+        </div>
+    </section>
 
-    function pilihMapel(mapel) {
-        mapelAktif = mapel;
-        soalIndeks = 0;
-        daftarSoalAktif = bankSoal[kelasAktif][mapel];
-        jawabanSiswa = new Array(daftarSoalAktif.length).fill(null);
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-sm">
+        <p>&copy; 2026 MIM WONOANTI III. Hak Cipta Dilindungi.</p>
+        <p class="text-xs text-slate-500 mt-1">Support By SmartHome Page 2026</p>
+    </footer>
 
-        document.getElementById('step-mapel').classList.add('hidden');
-        document.getElementById('step-kuis').classList.remove('hidden');
-        document.getElementById('label-mapel-kelas').innerText = `${mapel} - ${kelasAktif}`;
-        
-        muatSoal();
-    }
+    <!-- SCRIPT SLIDESHOW DENGAN TOMBOL NAVIGASI & AUTO SLIDE -->
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+        let slideInterval;
 
-    function muatSoal() {
-        if (soalIndeks < daftarSoalAktif.length) {
-            let curr = daftarSoalAktif[soalIndeks];
-            document.getElementById('label-nomor').innerText = `Soal ${soalIndeks + 1} dari ${daftarSoalAktif.length}`;
-            document.getElementById('soal-teks').innerText = curr.t;
-
-            let opsiHtml = '';
-            for (let i = 0; i < curr.o.length; i++) {
-                let activeClass = (jawabanSiswa[soalIndeks] === i) ? 'style="border-color: var(--primary); background-color: #e0f2fe;"' : '';
-                opsiHtml += `<button class="btn-opsi" ${activeClass} onclick="jawab(${i})">${String.fromCharCode(65 + i)}. ${curr.o[i]}</button>`;
-            }
-            document.getElementById('opsi-container').innerHTML = opsiHtml;
-        } else {
-            tampilkanHasil();
-        }
-    }
-
-    function jawab(pilihanIndex) {
-        jawabanSiswa[soalIndeks] = pilihanIndex;
-        soalIndeks++;
-        muatSoal();
-    }
-
-    function soalSebelumnya() {
-        if (soalIndeks > 0) {
-            soalIndeks--;
-            muatSoal();
-        } else {
-            alert("Ini adalah soal pertama.");
-        }
-    }
-
-    function kembaliKeMapelLangsung() {
-        if (confirm("Apakah Anda yakin ingin kembali ke menu mata pelajaran? Sesi kuis aktif akan dihentikan.")) {
-            document.getElementById('step-kuis').classList.add('hidden');
-            document.getElementById('step-mapel').classList.remove('hidden');
-        }
-    }
-
-    function kembaliKeKelasLangsung() {
-        if (confirm("Apakah Anda yakin ingin kembali ke menu pilihan kelas? Sesi kuis aktif akan dihentikan.")) {
-            document.getElementById('step-kuis').classList.add('hidden');
-            document.getElementById('step-kelas').classList.remove('hidden');
-        }
-    }
-
-    function tampilkanHasil() {
-        document.getElementById('step-kuis').classList.add('hidden');
-        document.getElementById('step-hasil').classList.remove('hidden');
-        
-        let benar = 0;
-        let salah = 0;
-        let totalSoal = daftarSoalAktif.length;
-
-        for (let i = 0; i < totalSoal; i++) {
-            if (jawabanSiswa[i] === daftarSoalAktif[i].j) {
-                benar++;
-            } else {
-                salah++;
-            }
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('opacity-100');
+                slide.classList.add('opacity-0');
+                if (i === index) {
+                    slide.classList.remove('opacity-0');
+                    slide.classList.add('opacity-100');
+                }
+            });
         }
 
-        let skorAkhir = Math.round((benar / totalSoal) * 100);
-
-        document.getElementById('skor-akhir').innerText = `Total Skor: ${skorAkhir}`;
-        document.getElementById('jumlah-benar').innerText = `Benar: ${benar}`;
-        document.getElementById('jumlah-salah').innerText = `Salah: ${salah}`;
-        
-        let pesan = "Sangat bagus! Tingkatkan terus prestasi belajarmu! 🌟";
-        if (skorAkhir < 70) {
-            pesan = "Tetap semangat belajar ya! Coba lagi yuk 💪";
-        } else if (skorAkhir === 100) {
-            pesan = "Luar Biasa! Nilai Sempurna! 🎉🏆";
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
         }
-        document.getElementById('pesan-hasil').innerText = pesan;
 
-        kirimEmailOtomatis(skorAkhir, benar, salah, totalSoal);
-    }
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(currentIndex);
+        }
 
-    function kirimEmailOtomatis(skor, benar, salah, total) {
-        const formData = new FormData();
-        formData.append("Nama Siswa", dataSiswa.nama);
-        formData.append("Asal Sekolah", dataSiswa.sekolah);
-        formData.append("Kelas", dataSiswa.kelas);
-        formData.append("Email Siswa", dataSiswa.email);
-        formData.append("Mata Pelajaran", mapelAktif);
-        formData.append("Total Skor", skor);
-        formData.append("Jawaban Benar", `${benar} dari ${total}`);
-        formData.append("Jawaban Salah", `${salah} dari ${total}`);
-        formData.append("_subject", `Hasil Kuis EduQuiz: ${dataSiswa.nama} (${dataSiswa.kelas})`);
-        formData.append("_captcha", "false");
+        function resetTimer() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 10000); // Ganti slide setiap 10 detik
+        }
 
-        fetch(`https://formsubmit.co/ajax/${emailSekolah}`, {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .catch(error => console.error("Proses pengiriman ke email gagal:", error));
-    }
+        // Event listener untuk tombol
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetTimer();
+        });
 
-    function kembaliKeMenuUtama() {
-        document.getElementById('step-hasil').classList.add('hidden');
-        document.getElementById('step-kelas').classList.remove('hidden');
-    }
-</script>
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetTimer();
+        });
+
+        // Mulai timer otomatis
+        slideInterval = setInterval(nextSlide, 10000);
+    </script>
 
 </body>
 </html>
